@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<title>Pitnik Social Network Toolkit</title>
+	<link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+
+	<link rel="stylesheet" href="/css/main.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/color.css">
+	<link rel="stylesheet" href="/css/responsive.css">
+
+</head>
+<body>
+<div class="wavy-wraper">
+	<div class="wavy">
+		<span style="--i:1;">p</span>
+		<span style="--i:2;">i</span>
+		<span style="--i:3;">t</span>
+		<span style="--i:4;">n</span>
+		<span style="--i:5;">i</span>
+		<span style="--i:6;">k</span>
+		<span style="--i:7;">.</span>
+		<span style="--i:8;">.</span>
+		<span style="--i:9;">.</span>
+	</div>
+</div>
+<div class="theme-layout">
+
+	<div class="responsive-header">
+		<div class="mh-head first Sticky">
+			<span class="mh-btns-left">
+				<a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
+			</span>
+			<span class="mh-text">
+				<a href="newsfeed.html" title=""><img src="images/logo2.png" alt=""></a>
+			</span>
+			<span class="mh-btns-right">
+				<a class="fa fa-sliders" href="#shoppingbag"></a>
+			</span>
+		</div>
+		<div class="mh-head second">
+			<form class="mh-form">
+				<input placeholder="search" />
+				<a href="#/" class="fa fa-search"></a>
+			</form>
+		</div>
+
+	</div><!-- responsive header -->
+
+	<div class="topbar stick" th:replace="/header1::header1">
+
+	</div><!-- header1 -->
+
+	<section>
+		<div class="gap2 gray-bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row merged20" id="page-contents">
+							<div class="user-profile" th:replace="/header2::header2">
+<!--								<figure>-->
+<!--									<div class="edit-pp">-->
+<!--										<label class="fileContainer">-->
+<!--											<i class="fa fa-camera"></i>-->
+<!--											<input type="file">-->
+<!--										</label>-->
+<!--									</div>-->
+<!--									<img src="images/resources/profile-image.jpg" alt="">-->
+<!--									<ul class="profile-controls">-->
+<!--										<li><a href="#" title="Add friend" data-toggle="tooltip"><i class="fa fa-user-plus"></i></a></li>-->
+<!--										<li><a class="send-mesg" href="#" title="Send Message" data-toggle="tooltip"><i class="fa fa-comment"></i></a></li>-->
+<!--									</ul>-->
+<!--								</figure>-->
+
+<!--								<div class="profile-section">-->
+<!--									<div class="row">-->
+<!--										<div class="col-lg-2 col-md-3">-->
+<!--											<div class="profile-author">-->
+<!--												<div class="profile-author-thumb">-->
+<!--													<img alt="author" src="images/resources/author.jpg">-->
+<!--													<div class="edit-dp">-->
+<!--														<label class="fileContainer">-->
+<!--															<i class="fa fa-camera"></i>-->
+<!--															<input type="file">-->
+<!--														</label>-->
+<!--													</div>-->
+<!--												</div>-->
+
+<!--												<div class="author-content">-->
+<!--													<a class="h4 author-name" href="about.html">Jack Carter</a>-->
+<!--													<div class="country">Ontario, CA</div>-->
+<!--												</div>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--										<div class="col-lg-10 col-md-9">-->
+<!--											<ul class="profile-menu">-->
+<!--												<li>-->
+<!--													<a class="" href="timeline.html">Timeline</a>-->
+<!--												</li>-->
+<!--												<li>-->
+<!--													<a class="active" href="about.html">About</a>-->
+<!--												</li>-->
+<!--												<li>-->
+<!--													<a class="" href="timeline-friends.html">Friends</a>-->
+<!--												</li>-->
+<!--												<li>-->
+<!--													<a class="" href="timeline-photos.html">Photos</a>-->
+<!--												</li>-->
+<!--											</ul>-->
+<!--											<ol class="folw-detail">-->
+<!--												<li><span>Posts</span><ins>101</ins></li>-->
+
+<!--											</ol>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+							</div><!-- user profile banner  -->
+							<div class="col-lg-9">
+								<div class="central-meta">
+									<div class="about">
+										<div class="d-flex flex-row mt-2">
+											<ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" >
+												<li class="nav-item">
+													<a href="#edit-profile" class="nav-link" data-toggle="tab" ><i class="fa fa-pencil"></i> Edit Profile</a>
+												</li>
+												<li class="nav-item">
+													<a href="#notifi" class="nav-link" data-toggle="tab" ><i class="fa fa-bell"></i> Notification</a>
+												</li>
+												<li class="nav-item">
+													<a href="#messages" class="nav-link" data-toggle="tab" ><i class="fa fa-comment"></i> Messages</a>
+												</li>
+
+											</ul>
+											<div class="tab-content">
+
+												<div class="tab-pane fade show active" id="edit-profile" >
+													<div class="set-title">
+														<h5>Edit Profile</h5>
+														<span>Change your avatar</span>
+
+													</div>
+													<form method="post" th:action="@{/update}" th:object="${user}" novalidate="novalidate" enctype="multipart/form-data">
+														<span th:if="${message}"><p th:text="${message}"></p></span>
+
+														<div class="setting-meta">
+														<div class="change-photo">
+															<figure><img th:src="@{${'/imageP/'+user.getAvatar()}}" alt="" height="50px" width="50px"></figure>
+															<div class="edit-img">
+																	<label class="fileContainer">
+																		<i class="fa fa-camera-retro"></i>
+																		Edit
+																		<input type="file" th:field="*{avatar}">
+																	</label>
+															</div>
+														</div>
+													</div>
+														<span>Change your back-ground</span>
+														<div class="setting-meta">
+															<div class="change-photo">
+																<figure><img th:src="@{${'/imageP/'+user.getBackground()}}" alt="" height="50px" width="50px"></figure>
+																<div class="edit-img">
+																		<label class="fileContainer">
+																			<i class="fa fa-camera-retro"></i>
+																			Edit
+																			<input type="file" th:field="*{background}">
+																		</label>
+																</div>
+															</div>
+														</div>
+													<div class="stg-form-area">
+														<div class="c-form">
+															<div>
+																<label>Name</label>
+																<input type="text" th:field="*{name}">
+															</div>
+
+															<div class="uzer-nam">
+																<label>User Name</label>
+																<input type="text" th:field="*{username}">
+															</div>
+															<div>
+																<label>Email</label>
+																<input type="email" th:field="*{email}">
+															</div>
+															<div>
+																<label>Password</label>
+																<input type="password" th:field="*{password}">
+															</div>
+															<div>
+																<button type="button"  data-ripple="">Cancel</button>
+																<button type="submit" data-ripple="">Save</button>
+															</div>
+														</div>
+													</div>
+													</form>
+												</div>
+												<!-- edit profile -->
+												<div class="tab-pane fade" id="notifi" role="tabpanel">
+													<div class="set-title">
+														<h5>Notification Setting</h5>
+														<span>Select push and email notifications you'd like to receive.</span>
+													</div>
+													<div class="notifi-seting">
+														<div class="form-radio">
+															<div class="radio">
+																<label>
+																	<input type="radio" checked="checked" name="radio"><i class="check-box"></i>
+																	Send Me emails about my activity except emails i have unsubscribe from
+																</label>
+															</div>
+															<div class="radio">
+																<label>
+																	<input type="radio" name="radio"><i class="check-box"></i>
+																	Only send me required services announcements.
+																</label>
+															</div>
+														</div>
+														<div class="set-title">
+															<h6>i'd like to receive emails and updates from Pitnik about</h6>
+														</div>
+														<div class="checkbox">
+															<label>
+																<input type="checkbox" checked="checked"><i class="check-box"></i>
+																Always General announcement, updates, posts, and videos.
+															</label>
+															<label>
+																<input type="checkbox" checked="checked"><i class="check-box"></i>
+																Personalise tips for my page.
+															</label>
+															<label>
+																<input type="checkbox" checked="checked"><i class="check-box"></i>
+																Announcements and recommendations.
+															</label>
+															<p><a href="#" title="">learn more</a> about emails from pitnik</p>
+														</div>
+														<div class="set-title">
+															<h6>Other Notifications</h6>
+														</div>
+														<div class="checkbox">
+															<label>
+																<input type="checkbox" checked="checked"><i class="check-box"></i>
+																Recommended videos.
+															</label>
+															<label>
+																<input type="checkbox" checked="checked"><i class="check-box"></i>
+																activity on my page or channel.
+															</label>
+															<label>
+																<input type="checkbox" checked="checked"><i class="check-box"></i>
+																Activity on my comments.
+															</label>
+															<label>
+																<input type="checkbox" checked="checked"><i class="check-box"></i>
+																Reply to comments.
+															</label>
+															<label>
+																<input type="checkbox" checked="checked"><i class="check-box"></i>
+																Mentions.
+															</label>
+
+														</div>
+														<div class="set-title">
+															<h6>Language Preference</h6>
+															<span>Select your email language</span>
+														</div>
+														<select class="select">
+															<option value="">Eglish US</option>
+															<option value="">Eglish UK</option>
+															<option value="">Russia</option>
+														</select>
+														<p>
+															you will always get notifications you have turned on for individual <a href="#" title="">Manage All Subscriptions</a>
+														</p>
+													</div>
+												</div><!-- notification -->
+												<div class="tab-pane fade" id="messages" role="tabpanel">
+													<div class="set-title">
+														<h5>Messages Setting</h5>
+														<span>Set your login preference, help us personalize your experience and make big account change here.</span>
+														<div class="mesg-seting">
+
+															<div class="set-title">
+																<h6>i'd like to receive emails and updates from Pitnik about</h6>
+															</div>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" checked="checked"><i class="check-box"></i>
+																	Always General announcement, updates, posts, and videos.
+																</label>
+																<label>
+																	<input type="checkbox" checked="checked"><i class="check-box"></i>
+																	Personalise tips for my page.
+																</label>
+																<label>
+																	<input type="checkbox" checked="checked"><i class="check-box"></i>
+																	Announcements and recommendations.
+																</label>
+																<p><a href="#" title="">learn more</a> about emails from pitnik</p>
+															</div>
+															<div class="set-title">
+																<h6>Other Messages</h6>
+															</div>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" checked="checked"><i class="check-box"></i>
+																	From Recommended videos.
+																</label>
+																<label>
+																	<input type="checkbox" checked="checked"><i class="check-box"></i>
+																	Messages from activity on my page or channel.
+																</label>
+																<label>
+																	<input type="checkbox" checked="checked"><i class="check-box"></i>
+																	Message me the replyer Activity on my comments.
+																</label>
+																<label>
+																	<input type="checkbox" checked="checked"><i class="check-box"></i>
+																	Reply to comments.
+																</label>
+																<label>
+																	<input type="checkbox" checked="checked"><i class="check-box"></i>
+																	Mentions.
+																</label>
+
+															</div>
+															<div class="set-title">
+																<h6>Language Preference</h6>
+																<span>Select your Messages language</span>
+															</div>
+															<select class="select">
+																<option value="">Eglish US</option>
+																<option value="">Eglish UK</option>
+																<option value="">Russia</option>
+															</select>
+															<p>
+																you will always get notifications you have turned on for individual <a href="#" title="">Manage All Subscriptions</a>
+															</p>
+														</div>
+													</div>
+												</div><!-- messages -->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div><!-- centerl meta -->
+							<div class="col-lg-3">
+								<aside class="sidebar static">
+									<div class="widget">
+										<h4 class="widget-title">Your page</h4>
+										<div class="your-page">
+											<figure>
+												<a title="" href="#"><img alt="" src="images/resources/friend-avatar9.jpg"></a>
+											</figure>
+											<div class="page-meta">
+												<a class="underline" title="" href="#">My page</a>
+												<span><i class="ti-comment"></i>Messages <em class="bg-blue">9</em></span>
+												<span><i class="ti-bell"></i>Notifications <em class="bg-purple">2</em></span>
+											</div>
+											<div class="page-likes">
+												<ul class="nav nav-tabs likes-btn">
+													<li class="nav-item"><a data-toggle="tab" href="#link1" class="active">likes</a></li>
+													<li class="nav-item"><a data-toggle="tab" href="#link2" class="">views</a></li>
+												</ul>
+												<!-- Tab panes -->
+												<div class="tab-content">
+													<div id="link1" class="tab-pane active fade show">
+														<span><i class="ti-heart"></i>884</span>
+														<a title="weekly-likes" href="#">35 new likes this week</a>
+														<div class="users-thumb-list">
+															<a data-toggle="tooltip" title="" href="#" data-original-title="Anderw">
+																<img alt="" src="images/resources/userlist-1.jpg">
+															</a>
+															<a data-toggle="tooltip" title="" href="#" data-original-title="frank">
+																<img alt="" src="images/resources/userlist-2.jpg">
+															</a>
+															<a data-toggle="tooltip" title="" href="#" data-original-title="Sara">
+																<img alt="" src="images/resources/userlist-3.jpg">
+															</a>
+															<a data-toggle="tooltip" title="" href="#" data-original-title="Amy">
+																<img alt="" src="images/resources/userlist-4.jpg">
+															</a>
+															<a data-toggle="tooltip" title="" href="#" data-original-title="Ema">
+																<img alt="" src="images/resources/userlist-5.jpg">
+															</a>
+															<a data-toggle="tooltip" title="" href="#" data-original-title="Sophie">
+																<img alt="" src="images/resources/userlist-6.jpg">
+															</a>
+															<a data-toggle="tooltip" title="" href="#" data-original-title="Maria">
+																<img alt="" src="images/resources/userlist-7.jpg">
+															</a>
+														</div>
+													</div>
+													<div id="link2" class="tab-pane fade">
+														<span><i class="ti-eye"></i>445</span>
+														<a title="weekly-likes" href="#">440 new views this week</a>
+														<div class="users-thumb-list">
+															<a data-toggle="tooltip" title="" href="#" data-original-title="Anderw">
+																<img alt="" src="images/resources/userlist-1.jpg">
+															</a>
+															<a data-toggle="tooltip" title="" href="#" data-original-title="frank">
+																<img alt="" src="images/resources/userlist-2.jpg">
+															</a>
+															<a data-toggle="tooltip" title="" href="#" data-original-title="Sara">
+																<img alt="" src="images/resources/userlist-3.jpg">
+															</a>
+															<a data-toggle="tooltip" title="" href="#" data-original-title="Amy">
+																<img alt="" src="images/resources/userlist-4.jpg">
+															</a>
+															<a data-toggle="tooltip" title="" href="#" data-original-title="Ema">
+																<img alt="" src="images/resources/userlist-5.jpg">
+															</a>
+															<a data-toggle="tooltip" title="" href="#" data-original-title="Sophie">
+																<img alt="" src="images/resources/userlist-6.jpg">
+															</a>
+															<a data-toggle="tooltip" title="" href="#" data-original-title="Maria">
+																<img alt="" src="images/resources/userlist-7.jpg">
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</aside>
+							</div><!-- sidebar -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+	</div><!-- side panel -->
+
+<script src="js/main.min.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <title>Pitnik Social Network Toolkit</title>
+    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+
+    <link rel="stylesheet" href="/css/main.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+
+</head>
+<body>
+
+    <div class="user-profile" th:fragment="header2">
+        <figure>
+            <div class="edit-pp">
+                <label class="fileContainer">
+                    <i class="fa fa-camera"></i>
+                    <input type="file">
+                </label>
+            </div>
+            <img th:src="@{${'/imageP/'+user.getBackground()}}" alt="" style="width: 1920px;height: 440px">
+            <ul class="profile-controls">
+                <li><a href="#" title="Add friend" data-toggle="tooltip"><i class="fa fa-user-plus"></i></a></li>
+                <li><a class="send-mesg" href="#" title="Send Message" data-toggle="tooltip"><i
+                        class="fa fa-comment"></i></a></li>
+            </ul>
+        </figure>
+
+        <div class="profile-section">
+            <div class="row">
+                <div class="col-lg-2 col-md-3">
+                    <div class="profile-author">
+                        <div class="profile-author-thumb">
+                            <img alt="author" th:src="@{${'/imageP/'+user.getAvatar()}}">
+                            <div class="edit-dp">
+                                <label class="fileContainer">
+                                    <i class="fa fa-camera"></i>
+                                    <input type="file">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="author-content">
+                            <a class="h4 author-name" href="about.html">Jack Carter</a>
+                            <div class="country">Ontario, CA</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10 col-md-9">
+                    <ul class="profile-menu">
+                        <li>
+                            <a class="" href="/timeline">Timeline</a>
+                        </li>
+                        <li>
+                            <a class="active" href="/about">About</a>
+                        </li>
+                        <li>
+                            <a class="" href="/timeline-friends2">Friends</a>
+                        </li>
+                        <li>
+                            <a class="" href="/timeline-photos">Photos</a>
+                        </li>
+                    </ul>
+                    <ol class="folw-detail">
+                        <li><span>Posts</span>
+                            <ins>101</ins>
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div><!-- user profile banner  -->
+
+</body>
+
+</html>
