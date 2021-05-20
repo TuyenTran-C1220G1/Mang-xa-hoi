@@ -63,77 +63,22 @@
 					<div class="col-lg-12">
 						<div class="row merged20" id="page-contents">
 							<div class="user-profile" th:replace="/header2::header2">
-<!--								<figure>-->
-<!--									<div class="edit-pp">-->
-<!--										<label class="fileContainer">-->
-<!--											<i class="fa fa-camera"></i>-->
-<!--											<input type="file">-->
-<!--										</label>-->
-<!--									</div>-->
-<!--									<img src="images/resources/profile-image.jpg" alt="">-->
-<!--									<ul class="profile-controls">-->
-<!--										<li><a href="#" title="Add friend" data-toggle="tooltip"><i class="fa fa-user-plus"></i></a></li>-->
-<!--										<li><a class="send-mesg" href="#" title="Send Message" data-toggle="tooltip"><i class="fa fa-comment"></i></a></li>-->
-<!--									</ul>-->
-<!--								</figure>-->
 
-<!--								<div class="profile-section">-->
-<!--									<div class="row">-->
-<!--										<div class="col-lg-2 col-md-3">-->
-<!--											<div class="profile-author">-->
-<!--												<div class="profile-author-thumb">-->
-<!--													<img alt="author" src="images/resources/author.jpg">-->
-<!--													<div class="edit-dp">-->
-<!--														<label class="fileContainer">-->
-<!--															<i class="fa fa-camera"></i>-->
-<!--															<input type="file">-->
-<!--														</label>-->
-<!--													</div>-->
-<!--												</div>-->
-
-<!--												<div class="author-content">-->
-<!--													<a class="h4 author-name" href="about.html">Jack Carter</a>-->
-<!--													<div class="country">Ontario, CA</div>-->
-<!--												</div>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--										<div class="col-lg-10 col-md-9">-->
-<!--											<ul class="profile-menu">-->
-<!--												<li>-->
-<!--													<a class="" href="timeline.html">Timeline</a>-->
-<!--												</li>-->
-<!--												<li>-->
-<!--													<a class="active" href="about.html">About</a>-->
-<!--												</li>-->
-<!--												<li>-->
-<!--													<a class="" href="timeline-friends.html">Friends</a>-->
-<!--												</li>-->
-<!--												<li>-->
-<!--													<a class="" href="timeline-photos.html">Photos</a>-->
-<!--												</li>-->
-<!--											</ul>-->
-<!--											<ol class="folw-detail">-->
-<!--												<li><span>Posts</span><ins>101</ins></li>-->
-
-<!--											</ol>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
 							</div><!-- user profile banner  -->
 							<div class="col-lg-9">
 								<div class="central-meta">
 									<div class="about">
 										<div class="d-flex flex-row mt-2">
 											<ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" >
-												<li class="nav-item">
-													<a href="#edit-profile" class="nav-link" data-toggle="tab" ><i class="fa fa-pencil"></i> Edit Profile</a>
-												</li>
-												<li class="nav-item">
-													<a href="#notifi" class="nav-link" data-toggle="tab" ><i class="fa fa-bell"></i> Notification</a>
-												</li>
-												<li class="nav-item">
-													<a href="#messages" class="nav-link" data-toggle="tab" ><i class="fa fa-comment"></i> Messages</a>
-												</li>
+<!--												<li class="nav-item">-->
+<!--													<a href="#edit-profile" class="nav-link" data-toggle="tab" ><i class="fa fa-pencil"></i> Edit Profile</a>-->
+<!--												</li>-->
+<!--												<li class="nav-item">-->
+<!--													<a href="#notifi" class="nav-link" data-toggle="tab" ><i class="fa fa-bell"></i> Notification</a>-->
+<!--												</li>-->
+<!--												<li class="nav-item">-->
+<!--													<a href="#messages" class="nav-link" data-toggle="tab" ><i class="fa fa-comment"></i> Messages</a>-->
+<!--												</li>-->
 
 											</ul>
 											<div class="tab-content">
@@ -162,7 +107,7 @@
 														<span>Change your back-ground</span>
 														<div class="setting-meta">
 															<div class="change-photo">
-																<figure><img th:src="@{${'/imageP/'+user.getBackground()}}" alt="" height="50px" width="50px"></figure>
+																<img th:src="@{${'/imageP/'+user.getBackground()}}" alt="" height="100px">
 																<div class="edit-img">
 																		<label class="fileContainer">
 																			<i class="fa fa-camera-retro"></i>
@@ -179,17 +124,25 @@
 																<input type="text" th:field="*{name}">
 															</div>
 
-															<div class="uzer-nam">
-																<label>User Name</label>
-																<input type="text" th:field="*{username}">
+															<div>
+																<label>About me</label>
+																<input type="text" th:field="*{description}">
 															</div>
 															<div>
-																<label>Email</label>
-																<input type="email" th:field="*{email}">
+																<label>Birthday</label>
+																<input type="date" th:field="*{dob}">
 															</div>
 															<div>
-																<label>Password</label>
-																<input type="password" th:field="*{password}">
+																<label>Phone number</label>
+																<input type="phone" th:field="*{phone}">
+															</div>
+															<div>
+																<label>Country</label>
+																<input type="text" th:field="*{country}">
+															</div>
+															<div>
+																<label>Gender</label>
+																<input type="text" th:field="*{gender}">
 															</div>
 															<div>
 																<button type="button"  data-ripple="">Cancel</button>

@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +18,7 @@ public class Post {
     private Long id;
     private String tittle;
     private String content;
-    private Date createdAt;
+    private LocalDateTime createdAt;
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
     private User user;
@@ -35,8 +36,18 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long id, String tittle, String content, Date createdAt, User user, Set<Image> images, int likes, int status) {
+    public Post(Long id, String tittle, String content, LocalDateTime createdAt, User user, Set<Image> images, int likes, int status) {
         this.id = id;
+        this.tittle = tittle;
+        this.content = content;
+        this.createdAt = createdAt;
+        this.user = user;
+        this.images = images;
+        this.likes = likes;
+        this.status = status;
+    }
+
+    public Post(String tittle, String content, LocalDateTime createdAt, User user, Set<Image> images, int likes, @Min(0) @Max(1) int status) {
         this.tittle = tittle;
         this.content = content;
         this.createdAt = createdAt;
@@ -70,11 +81,11 @@ public class Post {
         this.content = content;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

@@ -33,6 +33,13 @@ public class Relationship {
         this.status = status;
     }
 
+    public Relationship(User user, User userFriend, Date createdAt, @Min(1) @Max(4) int status) {
+        this.user = user;
+        this.userFriend = userFriend;
+        this.createdAt = createdAt;
+        this.status = status;
+    }
+
     public Long getId() {
         return id;
     }

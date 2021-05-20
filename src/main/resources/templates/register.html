@@ -51,10 +51,18 @@
                                     <i class="fa fa-key"></i>Sign Up
                                     <span>Sign Up now and meet the awesome friends around the world.</span>
                                 </div>
-                                <form class="we-form" action="/register" method="post" th:object="${user}">
+                                <form class="we-form" action="/register" method="post" th:object="${user}" >
+                                    <span style="color: black" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
+                                    <span style="color: black" th:if="${errorEmail}" th:text="${errorEmail}">Email Error</span>
                                     <input type="text" placeholder="Email" th:field="*{email}">
+
+                                    <span style="color: black" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span>
+                                    <span style="color: black" th:if="${errorUsername}" th:text="${errorUsername}">Username Error</span>
                                     <input type="text" placeholder="UserName" th:field="*{username}">
+
+                                    <span style="color: black" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
                                     <input type="text" placeholder="Name" th:field="*{name}">
+
                                     <input type="password" placeholder="Password" th:field="*{password}">
 
                                     <input type="checkbox"><label>Send code to Mobile</label>
