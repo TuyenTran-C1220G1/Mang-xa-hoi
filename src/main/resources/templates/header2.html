@@ -48,8 +48,8 @@
                         </div>
 
                         <div class="author-content">
-                            <a class="h4 author-name" href="about.html">Jack Carter</a>
-                            <div class="country">Ontario, CA</div>
+                            <a class="h4 author-name" href="about.html" th:utext="${user.getUsername()}">Jack Carter</a>
+<!--                            <div class="country">Ontario, CA</div>-->
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                             <a class="" href="/timeline">Timeline</a>
                         </li>
                         <li>
-                            <a class="active" href="/about">About</a>
+                            <a class="" href="/about">About</a>
                         </li>
                         <li>
                             <a class="" href="/timeline-friends2">Friends</a>

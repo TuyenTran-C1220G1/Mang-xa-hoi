@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank
     @Size(min = 3, max = 50)
     private String name;
@@ -56,10 +58,29 @@ public class User {
     @Lob
     private String background;
 
+    @NotBlank
+    @Size(min = 3, max = 100)
+    private String description;
+
+    @NotBlank
+    private Date dob;
+
+    @NotBlank
+    @Size(min = 0, max = 10)
+    private String phone;
+
+    @NotBlank
+    @Size(min = 3, max = 15)
+    private String country;
+
+    @NotBlank
+    @Size(min = 0, max = 6)
+    private String gender;
+
     public User(String username, String password, List<GrantedAuthority> authorities) {
     }
 
-    public User(Long id, String name, String username, String email, String password, List<Role> roles, String avatar, String background) {
+    public User(Long id, String name, String username, String email, String password, List<Role> roles, String avatar, String background, String description, Date dob, String phone, String country, String gender) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -68,6 +89,11 @@ public class User {
         this.roles = roles;
         this.avatar = avatar;
         this.background = background;
+        this.description = description;
+        this.dob = dob;
+        this.phone = phone;
+        this.country = country;
+        this.gender = gender;
     }
 
     public User() {
@@ -135,5 +161,45 @@ public class User {
 
     public void setBackground(String background) {
         this.background = background;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

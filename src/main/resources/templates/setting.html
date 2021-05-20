@@ -63,62 +63,7 @@
 					<div class="col-lg-12">
 						<div class="row merged20" id="page-contents">
 							<div class="user-profile" th:replace="/header2::header2">
-<!--								<figure>-->
-<!--									<div class="edit-pp">-->
-<!--										<label class="fileContainer">-->
-<!--											<i class="fa fa-camera"></i>-->
-<!--											<input type="file">-->
-<!--										</label>-->
-<!--									</div>-->
-<!--									<img src="images/resources/profile-image.jpg" alt="">-->
-<!--									<ul class="profile-controls">-->
-<!--										<li><a href="#" title="Add friend" data-toggle="tooltip"><i class="fa fa-user-plus"></i></a></li>-->
-<!--										<li><a class="send-mesg" href="#" title="Send Message" data-toggle="tooltip"><i class="fa fa-comment"></i></a></li>-->
-<!--									</ul>-->
-<!--								</figure>-->
 
-<!--								<div class="profile-section">-->
-<!--									<div class="row">-->
-<!--										<div class="col-lg-2 col-md-3">-->
-<!--											<div class="profile-author">-->
-<!--												<div class="profile-author-thumb">-->
-<!--													<img alt="author" src="images/resources/author.jpg">-->
-<!--													<div class="edit-dp">-->
-<!--														<label class="fileContainer">-->
-<!--															<i class="fa fa-camera"></i>-->
-<!--															<input type="file">-->
-<!--														</label>-->
-<!--													</div>-->
-<!--												</div>-->
-
-<!--												<div class="author-content">-->
-<!--													<a class="h4 author-name" href="about.html">Jack Carter</a>-->
-<!--													<div class="country">Ontario, CA</div>-->
-<!--												</div>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--										<div class="col-lg-10 col-md-9">-->
-<!--											<ul class="profile-menu">-->
-<!--												<li>-->
-<!--													<a class="" href="timeline.html">Timeline</a>-->
-<!--												</li>-->
-<!--												<li>-->
-<!--													<a class="active" href="about.html">About</a>-->
-<!--												</li>-->
-<!--												<li>-->
-<!--													<a class="" href="timeline-friends.html">Friends</a>-->
-<!--												</li>-->
-<!--												<li>-->
-<!--													<a class="" href="timeline-photos.html">Photos</a>-->
-<!--												</li>-->
-<!--											</ul>-->
-<!--											<ol class="folw-detail">-->
-<!--												<li><span>Posts</span><ins>101</ins></li>-->
-
-<!--											</ol>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
 							</div><!-- user profile banner  -->
 							<div class="col-lg-9">
 								<div class="central-meta">
@@ -188,8 +133,24 @@
 																<input type="email" th:field="*{email}">
 															</div>
 															<div>
-																<label>Password</label>
-																<input type="password" th:field="*{password}">
+																<label>About me</label>
+																<input type="text" th:field="*{description}">
+															</div>
+															<div>
+																<label>Birthday</label>
+																<input type="email" th:field="*{dob}">
+															</div>
+															<div>
+																<label>Phone number</label>
+																<input type="email" th:field="*{phone}">
+															</div>
+															<div>
+																<label>Country</label>
+																<input type="email" th:field="*{country}">
+															</div>
+															<div>
+																<label>Gender</label>
+																<input type="email" th:field="*{gender}">
 															</div>
 															<div>
 																<button type="button"  data-ripple="">Cancel</button>

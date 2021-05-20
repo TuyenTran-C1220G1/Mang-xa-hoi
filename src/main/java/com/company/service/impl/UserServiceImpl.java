@@ -12,6 +12,11 @@ public class UserServiceImpl implements IUserService {
     IUserRepository userRepository;
 
     @Override
+    public User findByUsername(String userName) {
+        return userRepository.findByUsername(userName);
+    }
+
+    @Override
     public User save(User user) {
         userRepository.save(user);
         return user;

@@ -52,9 +52,7 @@
 
 	</div><!-- responsive header -->
 
-	<div class="topbar stick" th:replace="/header1::header1">
-
-	</div><!-- topbar -->
+	<div class="topbar stick" th:replace="/header1::header1"></div><!-- topbar -->
 		
 	<section>
 		<div class="gap2 gray-bg">
@@ -62,181 +60,77 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="row merged20" id="page-contents">
-							<div class="user-profile" th:replace="/header2::header2">
-<!--								<figure>-->
-<!--									<div class="edit-pp">-->
-<!--										<label class="fileContainer">-->
-<!--											<i class="fa fa-camera"></i>-->
-<!--											<input type="file">-->
-<!--										</label>-->
-<!--									</div>-->
-<!--									<img th:src="@{${'/imageP/'+user.getBackground()}}" alt="" style="width: 1920px;height: 440px">-->
-<!--									<ul class="profile-controls">-->
-<!--										<li><a href="#" title="Add friend" data-toggle="tooltip"><i class="fa fa-user-plus"></i></a></li>-->
-<!--										<li><a class="send-mesg" href="#" title="Send Message" data-toggle="tooltip"><i class="fa fa-comment"></i></a></li>-->
-<!--									</ul>-->
-<!--								</figure>-->
-<!--								-->
-<!--								<div class="profile-section">-->
-<!--									<div class="row">-->
-<!--										<div class="col-lg-2 col-md-3">-->
-<!--											<div class="profile-author">-->
-<!--												<div class="profile-author-thumb">-->
-<!--													<img alt="author" th:src="@{${'/imageP/'+user.getAvatar()}}">-->
-<!--													<div class="edit-dp">-->
-<!--														<label class="fileContainer">-->
-<!--															<i class="fa fa-camera"></i>-->
-<!--															<input type="file">-->
-<!--														</label>-->
-<!--													</div>-->
-<!--												</div>-->
-<!--													-->
-<!--												<div class="author-content">-->
-<!--													<a class="h4 author-name" href="about.html">Jack Carter</a>-->
-<!--													<div class="country">Ontario, CA</div>-->
-<!--												</div>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--										<div class="col-lg-10 col-md-9">-->
-<!--											<ul class="profile-menu">-->
-<!--												<li>-->
-<!--													<a class="" href="timeline.html">Timeline</a>-->
-<!--												</li>-->
-<!--												<li>-->
-<!--													<a class="active" href="about.html">About</a>-->
-<!--												</li>-->
-<!--												<li>-->
-<!--													<a class="" href="timeline-friends.html">Friends</a>-->
-<!--												</li>-->
-<!--												<li>-->
-<!--													<a class="" href="timeline-photos.html">Photos</a>-->
-<!--												</li>-->
-<!--											</ul>-->
-<!--											<ol class="folw-detail">-->
-<!--												<li><span>Posts</span><ins>101</ins></li>-->
-
-<!--											</ol>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>	-->
-							</div><!-- user profile banner  -->
+							<div class="user-profile" th:replace="/header2::header2"></div><!-- user profile banner  -->
 							<div class="col-lg-4 col-md-4">
 								<aside class="sidebar">
 								<div class="central-meta stick-widget">
 									<span class="create-post">Personal Info</span>
 									<div class="personal-head">
+										<span class="f-title"><i class="fa fa-user"></i> Name:</span>
+										<p th:text="${user.getName()}"></p>
+										<span class="f-title"><i class="fa fa-user"></i> User Name:</span>
+										<p th:text="${user.getUsername()}"></p>
 										<span class="f-title"><i class="fa fa-user"></i> About Me:</span>
-										<p>
-											Hi, I’m John Carter, I’m 36 and I work as a Digital Designer for the “dewwater” Agency in Ontario, Canada
-										</p>
+										<p th:text="${user.getDescription()}"></p>
 										<span class="f-title"><i class="fa fa-birthday-cake"></i> Birthday:</span>
-										<p>
-											December 17, 1985 
+										<p th:text="${user.getDob()}">
+<!--											December 17, 1985-->
 										</p>
 										<span class="f-title"><i class="fa fa-phone"></i> Phone Number:</span>
-										<p>
-											+1-989-232435234 
+										<p  th:text="${user.getPhone()}">
+<!--											+1-989-232435234-->
 										</p>
-										<span class="f-title"><i class="fa fa-medkit"></i> Blood group:</span>
-										<p>
-											B+
-										</p>
+<!--										-->
 										<span class="f-title"><i class="fa fa-male"></i> Gender:</span>
-										<p>
-											Male 
+										<p th:text="${user.getGender()}">
+<!--											Male-->
 										</p>
 										<span class="f-title"><i class="fa fa-globe"></i> Country:</span>
-										<p>
-											San Francisco, California, USA 
+										<p th:text="${user.getCountry()}">
+<!--											San Francisco, California, USA-->
 										</p>
-										<span class="f-title"><i class="fa fa-briefcase"></i> Occupation:</span>
-										<p>
-											UI/UX Designer 
-										</p>
-										<span class="f-title"><i class="fa fa-handshake-o"></i> Joined:</span>
-										<p>
-											December 20, 2001  
-										</p>
-										
+<!--										-->
+
 										<span class="f-title"><i class="fa fa-envelope"></i> Email & Website:</span>
 										<p>
-											<a href="wpkixx.html" title="">www.wpkixx.com</a> <a href="http://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ebbb829f858280ab92849e99868a8287c5888486">[email&#160;protected]</a> 
+											<a href="wpkixx.html" title="" th:text="${user.getEmail()}">www.wpkixx.com</a> <a href="http://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ebbb829f858280ab92849e99868a8287c5888486">[email&#160;protected]</a>
 										</p>
 										
 									</div>
 								</div>
 								</aside>	
 							</div>	
-							<div class="col-lg-8 col-md-8">
+							<div class="col-lg-8 col-md-8" >
 								<div class="central-meta">
-									<span class="create-post">Friend's (320) <a href="timeline-friends2.html" title="">See All</a></span>
-									<ul class="frndz-list">
+									<span class="create-post">Friends</span>
+									<ul class="frndz-list" th:each="r: ${userFriendRelationshipList}">
 										<li>
-											<img src="images/resources/recent1.jpg" alt="">
+											<img  th:src="@{'/imageP/'+ ${r.userFriend.getAvatar()}}" alt="">
 											<div class="sugtd-frnd-meta">
-												<a href="#" title="">Olivia</a>
-												<span>1 mutual friend</span>
+												<a href="#" title="" th:text="${r.userFriend.getUsername()}">Olivia</a>
+<!--												<span>1 mutual friend</span>-->
 												<ul class="add-remove-frnd">
 													<li class="add-tofrndlist"><a class="send-mesg" href="#" title="Send Message"><i class="fa fa-commenting"></i></a></li>
 													<li class="remove-frnd"><a href="#" title="remove friend"><i class="fa fa-user-times"></i></a></li>
 												</ul>
 											</div>
 										</li>
+<!--										-->
+									</ul>
+
+									<ul class="frndz-list"  th:each="r: ${userRelationshipList}">
 										<li>
-											<img src="images/resources/recent2.jpg" alt="">
+											<img th:src="@{'/imageP/'+ ${r.user.getAvatar()}}" alt="">
 											<div class="sugtd-frnd-meta">
-												<a href="#" title="">Emma watson</a>
-												<span>2 mutual friend</span>
+												<a href="#" title=""  th:text="${r.user.getUsername()}">Olivia</a>
+												<!--												<span>1 mutual friend</span>-->
 												<ul class="add-remove-frnd">
 													<li class="add-tofrndlist"><a class="send-mesg" href="#" title="Send Message"><i class="fa fa-commenting"></i></a></li>
 													<li class="remove-frnd"><a href="#" title="remove friend"><i class="fa fa-user-times"></i></a></li>
 												</ul>
 											</div>
 										</li>
-										<li>
-											<img src="images/resources/recent3.jpg" alt="">
-											<div class="sugtd-frnd-meta">
-												<a href="#" title="">Isabella</a>
-												<span><a href="#" title="">Emmy</a> is mutual friend</span>
-												<ul class="add-remove-frnd">
-													<li class="add-tofrndlist"><a class="send-mesg" href="#" title="Send Message"><i class="fa fa-commenting"></i></a></li>
-													<li class="remove-frnd"><a href="#" title="remove friend"><i class="fa fa-user-times"></i></a></li>
-												</ul>
-											</div>
-										</li>
-										<li>
-											<img src="images/resources/recent4.jpg" alt="">
-											<div class="sugtd-frnd-meta">
-												<a href="#" title="">Amelia</a>
-												<span>5 mutual friend</span>
-												<ul class="add-remove-frnd">
-													<li class="add-tofrndlist"><a class="send-mesg" href="#" title="Send Message"><i class="fa fa-commenting"></i></a></li>
-													<li class="remove-frnd"><a href="#" title="remove friend"><i class="fa fa-user-times"></i></a></li>
-												</ul>
-											</div>
-										</li>
-										<li>
-											<img src="images/resources/recent5.jpg" alt="">
-											<div class="sugtd-frnd-meta">
-												<a href="#" title="">Sophia</a>
-												<span>1 mutual friend</span>
-												<ul class="add-remove-frnd">
-													<li class="add-tofrndlist"><a class="send-mesg" href="#" title="Send Message"><i class="fa fa-commenting"></i></a></li>
-													<li class="remove-frnd"><a href="#" title="remove friend"><i class="fa fa-user-times"></i></a></li>
-												</ul>
-											</div>
-										</li>
-										<li>
-											<img src="images/resources/recent6.jpg" alt="">
-											<div class="sugtd-frnd-meta">
-												<a href="#" title="">Amelia</a>
-												<span>3 mutual friend</span>
-												<ul class="add-remove-frnd">
-													<li class="add-tofrndlist"><a class="send-mesg" href="#" title="Send Message"><i class="fa fa-commenting"></i></a></li>
-													<li class="remove-frnd"><a href="#" title="remove friend"><i class="fa fa-user-times"></i></a></li>
-												</ul>
-											</div>
-										</li>
+										<!--										-->
 									</ul>
 								</div>
 <!--
@@ -254,66 +148,7 @@
 												</div>
 											</div>
 										</li>
-										<li>
-											<div class="item-box">
-												<a class="strip" href="images/resources/photo-33.jpg" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-												<img src="images/resources/photo3.jpg" alt=""></a>
-												<div class="over-photo">
-													<div class="likes heart" title="Like/Dislike">❤ <span>20</span></div>
-													<span>20 days ago</span>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="item-box">
-												<a class="strip" href="images/resources/photo-44.jpg" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-												<img src="images/resources/photo4.jpg" alt=""></a>
-												<div class="over-photo">
-													<div class="likes heart" title="Like/Dislike">❤ <span>155</span></div>
-													<span>Yesterday</span>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="item-box">
-												<a class="strip" href="images/resources/photo-55.jpg" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-												<img src="images/resources/photo5.jpg" alt=""></a>
-												<div class="over-photo">
-													<div class="likes heart" title="Like/Dislike">❤ <span>201</span></div>
-													<span>3 weeks ago</span>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="item-box">
-												<a class="strip" href="images/resources/photo-66.jpg" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-												<img src="images/resources/photo6.jpg" alt=""></a>
-												<div class="over-photo">
-													<div class="likes heart" title="Like/Dislike">❤ <span>81</span></div>
-													<span>2 months ago</span>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="item-box">
-												<a class="strip" href="images/resources/photo-77.jpg" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-												<img src="images/resources/photo7.jpg" alt=""></a>
-												<div class="over-photo">
-													<div class="likes heart" title="Like/Dislike">❤ <span>98</span></div>
-													<span>1 day</span>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="item-box">
-												<a class="strip" href="images/resources/photo-88.jpg" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-												<img src="images/resources/photo8.jpg" alt=""></a>
-												<div class="over-photo">
-													<div class="likes heart" title="Like/Dislike">❤ <span>87</span></div>
-													<span>23 hours ago</span>
-												</div>
-											</div>
-										</li>
+
 									</ul>
 								</div>
 <!--								-->
