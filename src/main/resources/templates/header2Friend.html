@@ -17,7 +17,7 @@
 </head>
 <body>
 
-    <div class="user-profile" th:fragment="header2">
+    <div class="user-profile" th:fragment="header2Friend">
         <figure>
             <div class="edit-pp">
                 <label class="fileContainer">
@@ -25,7 +25,7 @@
                     <input type="file">
                 </label>
             </div>
-            <img th:src="@{${'/imageP/'+user.getBackground()}}" alt="">
+            <img th:src="@{${'/imageP/'+userFriend.getBackground()}}" alt="">
             <ul class="profile-controls">
                 <li><a href="#" title="Add friend" data-toggle="tooltip"><i class="fa fa-user-plus"></i></a></li>
                 <li><a class="send-mesg" href="#" title="Send Message" data-toggle="tooltip"><i
@@ -38,7 +38,7 @@
                 <div class="col-lg-2 col-md-3">
                     <div class="profile-author">
                         <div class="profile-author-thumb">
-                            <img alt="author" th:src="@{${'/imageP/'+user.getAvatar()}}">
+                            <img alt="author" th:src="@{${'/imageP/'+userFriend.getAvatar()}}">
                             <div class="edit-dp">
                                 <label class="fileContainer">
                                     <i class="fa fa-camera"></i>
@@ -48,8 +48,8 @@
                         </div>
 
                         <div class="author-content">
-                            <a class="h4 author-name" href="/about" th:text="${user.getUsername()}">Jack Carter</a>
-                            <div class="country" th:text="${user.getCountry()}">Ontario, CA</div>
+                            <a class="h4 author-name" href="#" th:text="${userFriend.getUsername()}">Jack Carter</a>
+                            <div class="country" th:text="${userFriend.getCountry()}">Ontario, CA</div>
                         </div>
                     </div>
                 </div>

@@ -22,7 +22,7 @@ public class Post {
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
     private User user;
-    @JsonIgnore
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "post_image",
             joinColumns = @JoinColumn(name = "post_id"),
