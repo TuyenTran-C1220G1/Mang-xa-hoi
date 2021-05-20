@@ -1,10 +1,13 @@
 package com.company.controller;
 
 import com.company.model.*;
+import com.company.service.IPostService;
 import com.company.service.IRelationshipService;
 import com.company.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
@@ -32,9 +35,12 @@ public class HomeController {
     @Autowired
     IRelationshipService relationshipServiceImpl;
 
+    @Autowired
+    IPostService postService;
+
 
     @GetMapping("/home")
-    public ModelAndView showHome(Principal principal) {
+    public ModelAndView showHome(Principal principal, Pageable pageable) {
         principal.getName();
         User user = userServiceImpl.findByUsername(principal.getName());
         ModelAndView modelAndView = new ModelAndView("/newsfeed");
@@ -61,6 +67,10 @@ public class HomeController {
         modelAndView.addObject("requestFriendList", requestFriendListRelationship);
 
         modelAndView.addObject("postForm",new PostForm());
+// lay tat ca post
+
+        Page<Post> listPost = postService.findAll(pageable);
+        modelAndView.addObject("listPost", listPost);
 
         return modelAndView;
     }
@@ -157,10 +167,13 @@ public class HomeController {
         notRelationshipListUser.removeAll(listUserRelationshipMe);
         modelAndView.addObject("noRelationshipUserList", notRelationshipListUser);
 
-
         // lay ra list loi moi ket ban
         List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user,1);
         modelAndView.addObject("requestFriendList", requestFriendListRelationship);
+        modelAndView.addObject("postForm",new PostForm());
+
+        //lay ra post cua user
+        modelAndView.addObject("post",postService.findAllByUserId(user.getId()));
 
         return modelAndView;
     }

@@ -174,7 +174,7 @@
 											<li>
 												<figure><img th:src="@{${'/imageP/'+userF.getAvatar()}}" alt=""></figure>
 												<div class="friend-meta">
-													<h4><a href="time-line.html" title="" th:text="${userF.getUsername()}"></a></h4>
+													<h4><a th:href="@{/detailProfileFriend/{id}(id=${userF.getId()})}" title="" th:text="${userF.getUsername()}" ></a></h4>
 													<a th:href="@{/addFriend/{id}(id=${userF.getId()})}" title="" class="underline">Add Friend</a>
 												</div>
 											</li>
@@ -194,10 +194,7 @@
 										<div class="newpst-input">
 
 												<textarea th:field="*{content}" rows="2" placeholder="Share some what you are thinking?"></textarea>
-<!--												<select th:field="*{status}">-->
-<!--													<option th:value="1">Public</option>-->
-<!--													<option th:value="0">Private</option>-->
-<!--												</select>-->
+<!--												-->
 
 										</div>
 										<div class="attachments">
@@ -222,12 +219,12 @@
 									</div>	
 								</div><!-- add post new box -->
 
-								<div class="loadMore">
+								<div class="" th:each="post: ${listPost}">
 									<div class="central-meta item">
 										<div class="user-post">
 											<div class="friend-info">
 												<figure>
-													<img src="images/resources/nearly1.jpg" alt="">
+													<img th:src="@{${'/imageP/'+post.getUser().getAvatar()}}" alt="">
 												</figure>
 												<div class="friend-name">
 													<div class="more">
@@ -235,55 +232,28 @@
 															<ul>
 																<li><i class="fa fa-pencil-square-o"></i>Edit Post</li>
 																<li><i class="fa fa-trash-o"></i>Delete Post</li>
-																<li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
-																<li><i class="fa fa-address-card-o"></i>Boost This Post</li>
-																<li><i class="fa fa-clock-o"></i>Schedule Post</li>
-																<li><i class="fa fa-wpexplorer"></i>Select as featured</li>
-																<li><i class="fa fa-bell-slash-o"></i>Turn off Notifications</li>
+<!--																-->
 															</ul>
 														</div>
 													</div>
-													<ins><a href="time-line.html" title="">Jack Carter</a> Post Album</ins>
-													<span><i class="fa fa-globe"></i> published: September,15 2020 19:PM </span>
+													<ins><a href="time-line.html" title="" th:text="${post.getUser().getUsername()}">Jack Carter</a></ins>
+													<span th:text="${post.getCreatedAt()}"><i class="fa fa-globe" ></i> published: </span>
 												</div>
 												<div class="post-meta">
-													<p>
+													<p th:text="${post.getContent()}">
 														Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero.
 													</p>
 													<figure>
 														<div class="img-bunch">
 															<div class="row">
-																<div class="col-lg-6 col-md-6 col-sm-6">
-																	<figure>
-																		<a class="strip" href="images/resources/album1.jpg" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-																		<img src="images/resources/album1.jpg" alt="">
-																		</a>
-																	</figure>
-																	<figure>
-																		<a class="strip" href="images/resources/album2.jpg" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-																		<img src="images/resources/album2.jpg" alt="">
-																		</a>
-																	</figure>
-																</div>
-																<div class="col-lg-6 col-md-6 col-sm-6">
-																	<figure>
+<!--																-->
+																<div class="col-lg-6 col-md-6 col-sm-6" th:each="image:${post.getImages()}">
+																	<figure >
 																		<a class="strip" href="images/resources/album6.jpg" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-																		<img src="images/resources/album6.jpg" alt="">
+																		<img th:src="@{${'/imageP/'+image.image_link}}" alt="">
 																		</a>
 																	</figure>
-																	<figure>
-																		<a class="strip" href="images/resources/album5.jpg" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-																		<img src="images/resources/album5.jpg" alt="">
-																		</a>
-																	</figure>
-																	<figure>
-																		<a class="strip" href="images/resources/album4.jpg" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-																		<img src="images/resources/album4.jpg" alt="">
-																		</a>
-																		<div class="more-photos">
-																			<span>+15</span>
-																		</div>
-																	</figure>
+<!--																	-->
 																</div>
 															</div>
 														</div>	
@@ -295,30 +265,11 @@
 													</figure>	
 													<div class="we-video-info">
 														<ul>
-															<li>
-																<span class="views" title="views">
-																	<i class="fa fa-eye"></i>
-																	<ins>1.2k</ins>
-																</span>
-															</li>
+<!--															-->
 															<li>
 																<div class="likes heart" title="Like/Dislike">❤ <span>2K</span></div>
 															</li>
-															<li>
-																<span class="comment" title="Comments">
-																	<i class="fa fa-commenting"></i>
-																	<ins>52</ins>
-																</span>
-															</li>
-
-															<li>
-																<span>
-																	<a class="share-pst" href="#" title="Share">
-																		<i class="fa fa-share-alt"></i>
-																	</a>
-																	<ins>20</ins>
-																</span>	
-															</li>
+<!--															-->
 														</ul>
 														<div class="users-thumb-list">
 															<a data-toggle="tooltip" title="Anderw" href="#">
@@ -417,7 +368,6 @@
 
 										</div>
 									</div><!-- album post -->
-
 							    </div>
 							</div><!-- centerl meta -->
 							<div class="col-lg-3">

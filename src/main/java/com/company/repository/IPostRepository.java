@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IPostRepository extends PagingAndSortingRepository<Post,Long> {
-    public Iterable<Post> findAllByUserId(Long id);
+    Iterable<Post> findAllByUserId(Long id);
 }
