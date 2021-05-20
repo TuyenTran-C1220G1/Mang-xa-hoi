@@ -60,99 +60,99 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="row merged20" id="page-contents">
-							<div class="user-profile" th:replace="/header2::header2"></div><!-- user profile banner  -->
-							<div class="col-lg-4 col-md-4">
+							<div class="user-profile" th:replace="/header2Friend::header2Friend"></div><!-- user profile banner  -->
+							<div class="col-lg-12 col-md-12">
 								<aside class="sidebar">
 								<div class="central-meta stick-widget">
 									<span class="create-post">Personal Info</span>
 									<div class="personal-head">
 										<span class="f-title"><i class="fa fa-user"></i> Name:</span>
-										<p th:text="${user.getName()}"></p>
+										<p th:text="${userFriend.getName()}"></p>
 										<span class="f-title"><i class="fa fa-user"></i> User Name:</span>
-										<p th:text="${user.getUsername()}"></p>
+										<p th:text="${userFriend.getUsername()}"></p>
 										<span class="f-title"><i class="fa fa-user"></i> About Me:</span>
-										<p th:text="${user.getDescription()}"></p>
+										<p th:text="${userFriend.getDescription()}"></p>
 										<span class="f-title"><i class="fa fa-birthday-cake"></i> Birthday:</span>
-										<p th:text="${user.getDob()}">
+										<p th:text="${userFriend.getDob()}">
 <!--											December 17, 1985-->
 										</p>
 										<span class="f-title"><i class="fa fa-phone"></i> Phone Number:</span>
-										<p  th:text="${user.getPhone()}">
+										<p th:text="${userFriend.getPhone()}">
 <!--											+1-989-232435234-->
 										</p>
 <!--										-->
 										<span class="f-title"><i class="fa fa-male"></i> Gender:</span>
-										<p th:text="${user.getGender()}">
+										<p th:text="${userFriend.getGender()}">
 <!--											Male-->
 										</p>
 										<span class="f-title"><i class="fa fa-globe"></i> Country:</span>
-										<p th:text="${user.getCountry()}">
+										<p th:text="${userFriend.getCountry()}">
 <!--											San Francisco, California, USA-->
 										</p>
 <!--										-->
 
 										<span class="f-title"><i class="fa fa-envelope"></i> Email & Website:</span>
 										<p>
-											<a href="wpkixx.html" title="" th:text="${user.getEmail()}">www.wpkixx.com</a> <a href="http://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ebbb829f858280ab92849e99868a8287c5888486">[email&#160;protected]</a>
+											<a href="wpkixx.html" title="" th:text="${userFriend.getEmail()}">www.wpkixx.com</a> <a href="http://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ebbb829f858280ab92849e99868a8287c5888486">[email&#160;protected]</a>
 										</p>
 										
 									</div>
 								</div>
 								</aside>	
 							</div>	
-							<div class="col-lg-8 col-md-8" >
-								<div class="central-meta">
-									<span class="create-post">Friends</span>
-									<ul class="frndz-list" th:each="r: ${userFriendRelationshipList}">
-										<li>
-											<img  th:src="@{'/imageP/'+ ${r.userFriend.getAvatar()}}" alt="">
-											<div class="sugtd-frnd-meta">
-												<a href="#" title="" th:text="${r.userFriend.getUsername()}">Olivia</a>
-<!--												<span>1 mutual friend</span>-->
-												<ul class="add-remove-frnd">
-													<li class="add-tofrndlist"><a class="send-mesg" href="#" title="Send Message"><i class="fa fa-commenting"></i></a></li>
-													<li class="remove-frnd"><a href="#" title="remove friend"><i class="fa fa-user-times"></i></a></li>
-												</ul>
-											</div>
-										</li>
-<!--										-->
-									</ul>
+<!--							<div class="col-lg-8 col-md-8" >-->
+<!--								<div class="central-meta">-->
+<!--									<span class="create-post">Friends</span>-->
+<!--									<ul class="frndz-list" th:each="r: ${userFriendRelationshipList}">-->
+<!--										<li>-->
+<!--											<img  th:src="@{'/imageP/'+ ${r.userFriend.getAvatar()}}" alt="">-->
+<!--											<div class="sugtd-frnd-meta">-->
+<!--												<a href="#" title="" th:text="${r.userFriend.getUsername()}">Olivia</a>-->
+<!--&lt;!&ndash;												<span>1 mutual friend</span>&ndash;&gt;-->
+<!--												<ul class="add-remove-frnd">-->
+<!--													<li class="add-tofrndlist"><a class="send-mesg" href="#" title="Send Message"><i class="fa fa-commenting"></i></a></li>-->
+<!--													<li class="remove-frnd"><a href="#" title="remove friend"><i class="fa fa-user-times"></i></a></li>-->
+<!--												</ul>-->
+<!--											</div>-->
+<!--										</li>-->
+<!--&lt;!&ndash;										&ndash;&gt;-->
+<!--									</ul>-->
 
-									<ul class="frndz-list"  th:each="r: ${userRelationshipList}">
-										<li>
-											<img th:src="@{'/imageP/'+ ${r.user.getAvatar()}}" alt="">
-											<div class="sugtd-frnd-meta">
-												<a href="#" title=""  th:text="${r.user.getUsername()}">Olivia</a>
-												<!--												<span>1 mutual friend</span>-->
-												<ul class="add-remove-frnd">
-													<li class="add-tofrndlist"><a class="send-mesg" href="#" title="Send Message"><i class="fa fa-commenting"></i></a></li>
-													<li class="remove-frnd"><a href="#" title="remove friend"><i class="fa fa-user-times"></i></a></li>
-												</ul>
-											</div>
-										</li>
-										<!--										-->
-									</ul>
-								</div>
-<!--
-								<-- friends list -->
-								<div class="central-meta">
-									<span class="create-post">Photos (580) <a href="timeline-photos.html" title="">See All</a></span>
-									<ul class="photos-list">
-										<li>
-											<div class="item-box">
-												<a class="strip" href="images/resources/photo-22.jpg" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-												<img src="images/resources/photo2.jpg" alt=""></a>
-												<div class="over-photo">
-													<div class="likes heart" title="Like/Dislike">❤ <span>15</span></div>
-													<span>20 hours ago</span>
-												</div>
-											</div>
-										</li>
+<!--									<ul class="frndz-list"  th:each="r: ${userRelationshipList}">-->
+<!--										<li>-->
+<!--											<img th:src="@{'/imageP/'+ ${r.user.getAvatar()}}" alt="">-->
+<!--											<div class="sugtd-frnd-meta">-->
+<!--												<a href="#" title=""  th:text="${r.user.getUsername()}">Olivia</a>-->
+<!--												&lt;!&ndash;												<span>1 mutual friend</span>&ndash;&gt;-->
+<!--												<ul class="add-remove-frnd">-->
+<!--													<li class="add-tofrndlist"><a class="send-mesg" href="#" title="Send Message"><i class="fa fa-commenting"></i></a></li>-->
+<!--													<li class="remove-frnd"><a href="#" title="remove friend"><i class="fa fa-user-times"></i></a></li>-->
+<!--												</ul>-->
+<!--											</div>-->
+<!--										</li>-->
+<!--										&lt;!&ndash;										&ndash;&gt;-->
+<!--									</ul>-->
+<!--								</div>-->
+<!--&lt;!&ndash;-->
+<!--								<&#45;&#45; friends list &ndash;&gt;-->
+<!--								<div class="central-meta">-->
+<!--									<span class="create-post">Photos (580) <a href="timeline-photos.html" title="">See All</a></span>-->
+<!--									<ul class="photos-list">-->
+<!--										<li>-->
+<!--											<div class="item-box">-->
+<!--												<a class="strip" href="images/resources/photo-22.jpg" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">-->
+<!--												<img src="images/resources/photo2.jpg" alt=""></a>-->
+<!--												<div class="over-photo">-->
+<!--													<div class="likes heart" title="Like/Dislike">❤ <span>15</span></div>-->
+<!--													<span>20 hours ago</span>-->
+<!--												</div>-->
+<!--											</div>-->
+<!--										</li>-->
 
-									</ul>
-								</div>
-<!--								-->
-							</div>
+<!--									</ul>-->
+<!--								</div>-->
+<!--&lt;!&ndash;								&ndash;&gt;-->
+<!--							</div>-->
 						</div>	
 					</div>
 				</div>

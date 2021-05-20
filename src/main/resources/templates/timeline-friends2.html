@@ -122,7 +122,7 @@
 
                                                     <div class="frnd-meta">
                                                         <div class="frnd-name">
-                                                            <a href="#" title=""><span th:text="${r.userFriend.getUsername()}"></span></a>
+                                                            <a th:href="@{/detailProfileFriend/{id}(id=${r.getUserFriend().getId()})}" title=""><span th:text="${r.userFriend.getUsername()}"></span></a>
 <!--                                                            <span>Los Angeles, CA</span>-->
                                                         </div><br>
                                                         <a class="send-mesg" href="#" title="">Unfriend</a>

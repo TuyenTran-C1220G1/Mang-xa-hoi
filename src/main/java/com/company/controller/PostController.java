@@ -76,13 +76,4 @@ public class PostController {
         return new ModelAndView("redirect:/home");
     }
 
-    @GetMapping("/testlist")
-    public ModelAndView showList(Principal principal){
-
-        User user = userService.findByUsername(principal.getName());
-        ModelAndView modelAndView = new ModelAndView("/listtest");
-        modelAndView.addObject("listcontent",postService.findAllByUserId(user.getId()));
-        return modelAndView;
-    }
-
 }

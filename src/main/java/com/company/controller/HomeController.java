@@ -72,6 +72,12 @@ public class HomeController {
         Page<Post> listPost = postService.findAll(pageable);
         modelAndView.addObject("listPost", listPost);
 
+        // lay tat ca post
+
+        Page<Post> listPost = postService.findAll(pageable);
+        modelAndView.addObject("listPost", listPost);
+
+
         return modelAndView;
     }
 
