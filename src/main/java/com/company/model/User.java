@@ -8,8 +8,12 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -58,23 +62,19 @@ public class User {
     @Lob
     private String background;
 
-    @NotBlank
-    @Size(min = 3, max = 100)
+
     private String description;
 
-    @NotBlank
+
     private Date dob;
 
-    @NotBlank
-    @Size(min = 0, max = 10)
+
     private String phone;
 
-    @NotBlank
-    @Size(min = 3, max = 15)
+
     private String country;
 
-    @NotBlank
-    @Size(min = 0, max = 6)
+
     private String gender;
 
     public User(String username, String password, List<GrantedAuthority> authorities) {
@@ -201,5 +201,15 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getSimpleDate(){
+        try {
+            SimpleDateFormat  formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String strDate = formatter.format(dob);
+            return strDate;
+        }catch (Exception e){
+            return null;
+        }
     }
 }

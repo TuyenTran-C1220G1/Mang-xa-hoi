@@ -99,7 +99,7 @@
                                             <div class="col-lg-6">
                                                 <div class="row merged20">
                                                     <div class="col-lg-7 col-md-7 col-sm-7">
-                                                        <form action="/search" method="post">
+                                                        <form action="/search" method="get">
                                                             <input name="search" type="text" placeholder="Search Friend">
                                                             <button type="submit"><i class="fa fa-search"></i></button>
                                                         </form>
@@ -115,15 +115,7 @@
 
                                             <div class="col-lg-3 col-md-6 col-sm-6" th:each="r: ${userFriendRelationshipList}">
                                                 <div class="friend-block" >
-<!--                                                    <div class="more-opotnz">-->
-<!--                                                        <i class="fa fa-ellipsis-h"></i>-->
-<!--                                                        <ul>-->
-<!--                                                            <li><a href="#" title="">Block</a></li>-->
-<!--                                                            <li><a href="#" title="">UnBlock</a></li>-->
-<!--                                                            <li><a href="#" title="">Mute Notifications</a></li>-->
-<!--                                                            <li><a href="#" title="">hide from friend list</a></li>-->
-<!--                                                        </ul>-->
-<!--                                                    </div>-->
+
                                                     <figure>
                                                         <img  th:src="@{'/imageP/'+ ${r.userFriend.getAvatar()}}" alt="images/resources/frnd-figure1.jpg">
                                                     </figure>

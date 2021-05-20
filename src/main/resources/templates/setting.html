@@ -70,15 +70,15 @@
 									<div class="about">
 										<div class="d-flex flex-row mt-2">
 											<ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" >
-												<li class="nav-item">
-													<a href="#edit-profile" class="nav-link" data-toggle="tab" ><i class="fa fa-pencil"></i> Edit Profile</a>
-												</li>
-												<li class="nav-item">
-													<a href="#notifi" class="nav-link" data-toggle="tab" ><i class="fa fa-bell"></i> Notification</a>
-												</li>
-												<li class="nav-item">
-													<a href="#messages" class="nav-link" data-toggle="tab" ><i class="fa fa-comment"></i> Messages</a>
-												</li>
+<!--												<li class="nav-item">-->
+<!--													<a href="#edit-profile" class="nav-link" data-toggle="tab" ><i class="fa fa-pencil"></i> Edit Profile</a>-->
+<!--												</li>-->
+<!--												<li class="nav-item">-->
+<!--													<a href="#notifi" class="nav-link" data-toggle="tab" ><i class="fa fa-bell"></i> Notification</a>-->
+<!--												</li>-->
+<!--												<li class="nav-item">-->
+<!--													<a href="#messages" class="nav-link" data-toggle="tab" ><i class="fa fa-comment"></i> Messages</a>-->
+<!--												</li>-->
 
 											</ul>
 											<div class="tab-content">
@@ -107,7 +107,7 @@
 														<span>Change your back-ground</span>
 														<div class="setting-meta">
 															<div class="change-photo">
-																<figure><img th:src="@{${'/imageP/'+user.getBackground()}}" alt="" height="50px" width="50px"></figure>
+																<img th:src="@{${'/imageP/'+user.getBackground()}}" alt="" height="100px">
 																<div class="edit-img">
 																		<label class="fileContainer">
 																			<i class="fa fa-camera-retro"></i>
@@ -124,33 +124,25 @@
 																<input type="text" th:field="*{name}">
 															</div>
 
-															<div class="uzer-nam">
-																<label>User Name</label>
-																<input type="text" th:field="*{username}">
-															</div>
-															<div>
-																<label>Email</label>
-																<input type="email" th:field="*{email}">
-															</div>
 															<div>
 																<label>About me</label>
 																<input type="text" th:field="*{description}">
 															</div>
 															<div>
 																<label>Birthday</label>
-																<input type="email" th:field="*{dob}">
+																<input type="date" th:field="*{dob}">
 															</div>
 															<div>
 																<label>Phone number</label>
-																<input type="email" th:field="*{phone}">
+																<input type="phone" th:field="*{phone}">
 															</div>
 															<div>
 																<label>Country</label>
-																<input type="email" th:field="*{country}">
+																<input type="text" th:field="*{country}">
 															</div>
 															<div>
 																<label>Gender</label>
-																<input type="email" th:field="*{gender}">
+																<input type="text" th:field="*{gender}">
 															</div>
 															<div>
 																<button type="button"  data-ripple="">Cancel</button>

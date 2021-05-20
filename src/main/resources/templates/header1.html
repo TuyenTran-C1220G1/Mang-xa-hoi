@@ -20,7 +20,7 @@
 <body>
 	<div th:fragment="header1" class="topbar stick">
 		<div class="logo">
-			<a title="" href="newsfeed.html"><img src="images/logo.png" alt=""></a>
+			<a title="" href="/home"><img src="images/logo.png" alt=""></a>
 		</div>
 		<div class="top-area">
 <!--			<div class="main-menu">-->
@@ -41,91 +41,28 @@
 				<li><a href="/home" title="Home" data-ripple=""><i class="fa fa-home"></i></a></li>
 				<li>
 					<a href="#" title="Friend Requests" data-ripple="">
-						<i class="fa fa-user"></i><em class="bg-red">5</em>
+						<i class="fa fa-user"></i><em class="bg-red" th:text="${requestFriendList.size()}">5</em>
 					</a>
 					<div class="dropdowns">
-						<span>5 New Requests <a href="#" title="">View all Requests</a></span>
-						<ul class="drops-menu">
+						<span th:text="${requestFriendList.size() + ' New Requests'}">5 New Requests <a href="#" title="">View all Requests</a></span>
+						<ul class="drops-menu" th:each="re:${requestFriendList}">
 							<li>
 								<div>
 									<figure>
-										<img src="images/resources/thumb-2.jpg" alt="">
+										<img th:src="@{${'/imageP/'+re.getUser().getAvatar()}}" alt="" width="30px">
 									</figure>
 									<div class="mesg-meta">
-										<h6><a href="#" title="">Loren</a></h6>
-										<span><b>Amy</b> is mutule friend</span>
-										<i>yesterday</i>
+										<h6><a href="#" title="" th:text="${re.getUser().getUsername}">Loren</a></h6>
+										<span><b>Amy</b> Sent request</span>
+										<i>Confirm</i>
 									</div>
 									<div class="add-del-friends">
-										<a href="#" title=""><i class="fa fa-heart"></i></a>
+										<a th:href="@{/accessFriend/{id}(id=${re.getId()})}" title=""><i class="fa fa-heart"></i></a>
 										<a href="#" title=""><i class="fa fa-trash"></i></a>
 									</div>
 								</div>
 							</li>
-							<li>
-								<div>
-									<figure>
-										<img src="images/resources/thumb-3.jpg" alt="">
-									</figure>
-									<div class="mesg-meta">
-										<h6><a href="#" title="">Tina Trump</a></h6>
-										<span><b>Simson</b> is mutule friend</span>
-										<i>2 days ago</i>
-									</div>
-									<div class="add-del-friends">
-										<a href="#" title=""><i class="fa fa-heart"></i></a>
-										<a href="#" title=""><i class="fa fa-trash"></i></a>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div>
-									<figure>
-										<img src="images/resources/thumb-4.jpg" alt="">
-									</figure>
-									<div class="mesg-meta">
-										<h6><a href="#" title="">Andrew</a></h6>
-										<span><b>Bikra</b> is mutule friend</span>
-										<i>4 hours ago</i>
-									</div>
-									<div class="add-del-friends">
-										<a href="#" title=""><i class="fa fa-heart"></i></a>
-										<a href="#" title=""><i class="fa fa-trash"></i></a>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div>
-									<figure>
-										<img src="images/resources/thumb-5.jpg" alt="">
-									</figure>
-									<div class="mesg-meta">
-										<h6><a href="#" title="">Dasha</a></h6>
-										<span><b>Sarah</b> is mutule friend</span>
-										<i>9 hours ago</i>
-									</div>
-									<div class="add-del-friends">
-										<a href="#" title=""><i class="fa fa-heart"></i></a>
-										<a href="#" title=""><i class="fa fa-trash"></i></a>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div>
-									<figure>
-										<img src="images/resources/thumb-1.jpg" alt="">
-									</figure>
-									<div class="mesg-meta">
-										<h6><a href="#" title="">Emily</a></h6>
-										<span><b>Amy</b> is mutule friend</span>
-										<i>4 hours ago</i>
-									</div>
-									<div class="add-del-friends">
-										<a href="#" title=""><i class="fa fa-heart"></i></a>
-										<a href="#" title=""><i class="fa fa-trash"></i></a>
-									</div>
-								</div>
-							</li>
+
 						</ul>
 						<a href="friend-requests.html" title="" class="more-mesg">View All</a>
 					</div>
@@ -296,7 +233,7 @@
 			</ul>
 			<div class="user-img">
 				<h5 th:utext="${user.getUsername()}">Jack Carter</h5>
-				<img th:src="@{${'/imageP/'+user.getAvatar()}}" alt="" height="30px" width="30px">
+				<img th:src="@{${'/imageP/'+user.getAvatar()}}" alt="" width="50px">
 				<span class="status f-online"></span>
 				<div class="user-setting">
 					<span class="seting-title">Chat setting <a href="#" title="">see all</a></span>

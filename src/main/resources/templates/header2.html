@@ -25,7 +25,7 @@
                     <input type="file">
                 </label>
             </div>
-            <img th:src="@{${'/imageP/'+user.getBackground()}}" alt="" style="width: 1920px;height: 440px">
+            <img th:src="@{${'/imageP/'+user.getBackground()}}" alt="">
             <ul class="profile-controls">
                 <li><a href="#" title="Add friend" data-toggle="tooltip"><i class="fa fa-user-plus"></i></a></li>
                 <li><a class="send-mesg" href="#" title="Send Message" data-toggle="tooltip"><i
@@ -48,8 +48,8 @@
                         </div>
 
                         <div class="author-content">
-                            <a class="h4 author-name" href="about.html" th:utext="${user.getUsername()}">Jack Carter</a>
-<!--                            <div class="country">Ontario, CA</div>-->
+                            <a class="h4 author-name" href="/about" th:text="${user.getUsername()}">Jack Carter</a>
+                            <div class="country">Ontario, CA</div>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ package com.company.service.impl;
 
 import com.company.model.User;
 import com.company.repository.IAdminRepository;
+import com.company.repository.ICommentRepository;
 import com.company.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

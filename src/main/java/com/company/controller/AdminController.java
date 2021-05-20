@@ -30,7 +30,7 @@ public class AdminController {
     @Autowired
     RelationshipServiceImpl relationshipServiceImpl;
 
-    @GetMapping("/manage")
+    @GetMapping("/admin")
     public ModelAndView admin() {
         Iterable<User> users = adminService.findAll();
         ModelAndView modelAndView = new ModelAndView("admin");
