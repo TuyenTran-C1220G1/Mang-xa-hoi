@@ -6,7 +6,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -54,6 +56,15 @@ public class Post {
         this.user = user;
         this.images = images;
         this.likes = likes;
+        this.status = status;
+    }
+
+    public Post(String tittle, String content, LocalDateTime createdAt, User user, Set<Image> images, int status) {
+        this.tittle = tittle;
+        this.content = content;
+        this.createdAt = createdAt;
+        this.user = user;
+        this.images = images;
         this.status = status;
     }
 
@@ -119,5 +130,15 @@ public class Post {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getSimpleDate(){
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            String formattedDateTime = createdAt.format(formatter);
+            return formattedDateTime;
+        }catch (Exception e){
+            return null;
+        }
     }
 }

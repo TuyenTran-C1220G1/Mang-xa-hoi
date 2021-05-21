@@ -41,7 +41,7 @@
 				<a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
 			</span>
 			<span class="mh-text">
-				<a href="newsfeed.html" title=""><img src="images/logo2.png" alt=""></a>
+				<a href="newsfeed.html" title=""><img src="/images/logo2.png" alt=""></a>
 			</span>
 			<span class="mh-btns-right">
 				<a class="fa fa-sliders" href="#shoppingbag"></a>
@@ -154,11 +154,11 @@
 
 											<li>
 												<i class="ti-comments-smiley"></i>
-												<a href="messages.html" title="">Messages</a>
+												<a href="/timeline" title="">Timeline</a>
 											</li>
 											<li>
 												<i class="ti-bell"></i>
-												<a href="notifications.html" title="">Notifications</a>
+												<a href="" title="">Notifications</a>
 											</li>
 
 											<li>
@@ -192,10 +192,7 @@
 										</figure>
 										<form th:object="${postForm}" action="/createpost" method="post" enctype="multipart/form-data">
 										<div class="newpst-input">
-
 												<textarea th:field="*{content}" rows="2" placeholder="Share some what you are thinking?"></textarea>
-<!--												-->
-
 										</div>
 										<div class="attachments">
 											<ul>
@@ -237,7 +234,7 @@
 														</div>
 													</div>
 													<ins><a href="time-line.html" title="" th:text="${post.getUser().getUsername()}">Jack Carter</a></ins>
-													<span th:text="${post.getCreatedAt()}"><i class="fa fa-globe" ></i> published: </span>
+													<span> Published: <i class=""th:text="${post.getSimpleDate()}" ></i></span>
 												</div>
 												<div class="post-meta">
 													<p th:text="${post.getContent()}">
@@ -273,26 +270,33 @@
 														</ul>
 														<div class="users-thumb-list">
 															<a data-toggle="tooltip" title="Anderw" href="#">
-																<img alt="" src="images/resources/userlist-1.jpg">  
+																<img alt="" src="/images/resources/userlist-1.jpg">
 															</a>
 															<a data-toggle="tooltip" title="frank" href="#">
-																<img alt="" src="images/resources/userlist-2.jpg">  
+																<img alt="" src="/images/resources/userlist-2.jpg">
 															</a>
 															<a data-toggle="tooltip" title="Sara" href="#">
-																<img alt="" src="images/resources/userlist-3.jpg">  
+																<img alt="" src="/images/resources/userlist-3.jpg">
 															</a>
 															<a data-toggle="tooltip" title="Amy" href="#">
-																<img alt="" src="images/resources/userlist-4.jpg">  
+																<img alt="" src="/images/resources/userlist-4.jpg">
 															</a>
 															<a data-toggle="tooltip" title="Ema" href="#">
-																<img alt="" src="images/resources/userlist-5.jpg">  
+																<img alt="" src="/images/resources/userlist-5.jpg">
 															</a>
 															<span><strong>You</strong>, <b>Sarah</b> and <a href="#" title="">24+ more</a> liked</span>
 														</div>
 													</div>
 												</div>
 												<div class="coment-area" style="display: block;">
-													<ul class="we-comet">
+													<ul class="we-comet" th:id="${post.getId()}+'formListComment'">
+														<button th:onclick="|getListComment('${post.getId()}')|">List Comment</button>
+
+													</ul>
+													<ul class="post-comment" th:id="${post.getId()}+'formComment'">
+														<button th:onclick="|addFormComment('${post.getId()}')|">Add Comment</button>
+													</ul>
+<!--													<ul class="we-comet">-->
 														<li>
 															<div class="comet-avatar">
 																<img src="images/resources/nearly3.jpg" alt="">
@@ -306,63 +310,62 @@
 																	<a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
 																</div>
 															</div>
+														</li>
+<!--														<li>-->
+<!--															<div class="comet-avatar">-->
+<!--																<img src="images/resources/comet-4.jpg" alt="">-->
+<!--															</div>-->
+<!--															<div class="we-comment">-->
+<!--																<h5><a href="time-line.html" title="">Sophia</a></h5>-->
+<!--																<p>we are working for the dance and sing songs. this video is very awesome for the youngster.-->
+<!--																	<i class="em em-smiley"></i>-->
+<!--																</p>-->
+<!--																<div class="inline-itms">-->
+<!--																	<span>1 year ago</span>-->
+<!--																	<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>-->
+<!--																	<a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>-->
+<!--																</div>-->
+<!--															</div>-->
+<!--														</li>-->
+<!--														<li>-->
+<!--															<a href="#" title="" class="showmore underline">more comments+</a>-->
+<!--														</li>-->
+<!--														<li class="post-comment">-->
+<!--															<div class="comet-avatar">-->
+<!--																<img src="images/resources/nearly1.jpg" alt="">-->
+<!--															</div>-->
+<!--															<div class="post-comt-box">-->
+<!--																<form method="post">-->
+<!--																	<textarea placeholder="Post your comment"></textarea>-->
+<!--																	<div class="add-smiles">-->
+<!--																		<div class="uploadimage">-->
+<!--																			<i class="fa fa-image"></i>-->
+<!--																			<label class="fileContainer">-->
+<!--																				<input type="file">-->
+<!--																			</label>-->
+<!--																		</div>-->
+<!--																		<span class="em em-expressionless" title="add icon"></span>-->
+<!--																		<div class="smiles-bunch">-->
+<!--																			<i class="em em-&#45;&#45;1"></i>-->
+<!--																			<i class="em em-smiley"></i>-->
+<!--																			<i class="em em-anguished"></i>-->
+<!--																			<i class="em em-laughing"></i>-->
+<!--																			<i class="em em-angry"></i>-->
+<!--																			<i class="em em-astonished"></i>-->
+<!--																			<i class="em em-blush"></i>-->
+<!--																			<i class="em em-disappointed"></i>-->
+<!--																			<i class="em em-worried"></i>-->
+<!--																			<i class="em em-kissing_heart"></i>-->
+<!--																			<i class="em em-rage"></i>-->
+<!--																			<i class="em em-stuck_out_tongue"></i>-->
+<!--																		</div>-->
+<!--																	</div>-->
 
-														</li>
-														<li>
-															<div class="comet-avatar">
-																<img src="images/resources/comet-4.jpg" alt="">
-															</div>
-															<div class="we-comment">
-																<h5><a href="time-line.html" title="">Sophia</a></h5>
-																<p>we are working for the dance and sing songs. this video is very awesome for the youngster.
-																	<i class="em em-smiley"></i>
-																</p>
-																<div class="inline-itms">
-																	<span>1 year ago</span>
-																	<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-																	<a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
-																</div>
-															</div>
-														</li>
-														<li>
-															<a href="#" title="" class="showmore underline">more comments+</a>
-														</li>
-														<li class="post-comment">
-															<div class="comet-avatar">
-																<img src="images/resources/nearly1.jpg" alt="">
-															</div>
-															<div class="post-comt-box">
-																<form method="post">
-																	<textarea placeholder="Post your comment"></textarea>
-																	<div class="add-smiles">
-																		<div class="uploadimage">
-																			<i class="fa fa-image"></i>
-																			<label class="fileContainer">
-																				<input type="file">
-																			</label>
-																		</div>
-																		<span class="em em-expressionless" title="add icon"></span>
-																		<div class="smiles-bunch">
-																			<i class="em em---1"></i>
-																			<i class="em em-smiley"></i>
-																			<i class="em em-anguished"></i>
-																			<i class="em em-laughing"></i>
-																			<i class="em em-angry"></i>
-																			<i class="em em-astonished"></i>
-																			<i class="em em-blush"></i>
-																			<i class="em em-disappointed"></i>
-																			<i class="em em-worried"></i>
-																			<i class="em em-kissing_heart"></i>
-																			<i class="em em-rage"></i>
-																			<i class="em em-stuck_out_tongue"></i>
-																		</div>
-																	</div>
-
-																	<button type="submit"></button>
-																</form>	
-															</div>
-														</li>
-													</ul>
+<!--																	<button type="submit"></button>-->
+<!--																</form>	-->
+<!--															</div>-->
+<!--														</li>-->
+<!--													</ul>-->
 												</div>
 											</div>
 
@@ -377,21 +380,21 @@
 										<h4 class="widget-title">Recent Links <a title="" href="#" class="see-all">See All</a></h4>
 										<ul class="recent-links">
 											<li>
-												<figure><img src="images/resources/recentlink-1.jpg" alt=""></figure>
+												<figure><img src="/img/images/resources/recentlink-1.jpg" alt=""></figure>
 												<div class="re-links-meta">
 													<h6><a href="#" title="">moira's fade reaches much farther than you think.</a></h6>
 													<span>2 weeks ago </span>
 												</div>
 											</li>
 											<li>
-												<figure><img src="images/resources/recentlink-2.jpg" alt=""></figure>
+												<figure><img src="/img/images/resources/recentlink-2.jpg" alt=""></figure>
 												<div class="re-links-meta">
 													<h6><a href="#" title="">daniel asks if we want him to do the voice of doomfist</a></h6>
 													<span>3 months ago </span>
 												</div>
 											</li>
 											<li>
-												<figure><img src="images/resources/recentlink-3.jpg" alt=""></figure>
+												<figure><img src="/img/images/resources/recentlink-3.jpg" alt=""></figure>
 												<div class="re-links-meta">
 													<h6><a href="#" title="">the pitnik overwatch scandals.</a></h6>
 													<span>1 day before</span>
@@ -609,11 +612,11 @@
 	
 	<script src="js/main.min.js"></script>
 	<script src="js/jquery-stories.js"></script>
-	<script src="../../../cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
+	<script src="/cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
-	<script src="js/locationpicker.jquery.js"></script>
-	<script src="js/map-init.js"></script>
-	<script src="js/script.js"></script>
+	<script src="/js/locationpicker.jquery.js"></script>
+	<script src="/js/map-init.js"></script>
+	<script src="/js/script.js"></script>
 	<script>
 		jQuery(document).ready(function($) {
 
@@ -637,6 +640,88 @@
 			});
 
 		});
+</script>
+
+<script src="/ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+	function addNewComment(id){
+		let content = document.getElementById("p"+id).value;
+		let newComment = {
+			content : content
+		};
+		$.ajax({
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			type: "POST",
+			data: JSON.stringify(newComment),
+			//tên API
+			url: `http://localhost:8080/comment/create/${id}`,
+			//xử lý khi thành công
+			success: getListComment(id),
+			error: function () { // error callback
+				alert("lỗi")
+			}
+
+		});
+		//chặn sự kiện mặc định của thẻ
+		event.preventDefault();
+	}
+
+	function addFormComment(a){
+		let  content = `
+            <div class="post-comt-box" >
+                <form>
+                    <textarea id="p${a}" placeholder="Post your comment"></textarea>
+                </form>
+
+                    <button onclick="addNewComment(${a})">Send</button>
+
+            </div>`
+		// <button th:onclick="|addNewComment('${a}')|">Send</button>
+		let divID = a+"formComment";
+		document.getElementById(divID).innerHTML = content;
+	}
+	function getListComment(a){
+		let divId = a + 'formListComment'
+		$.ajax({
+					type: "GET",
+					//tên API
+					url: `http://localhost:8080/comment/listcomment/${a}`,
+					//xử lý khi thành công
+					success: function (data) {
+						// hien thi danh sach o day
+						var content;
+						for (let i = 0; i < data.length; i++) {
+							content += getComment(data[i]);
+						}
+						document.getElementById(divId).innerHTML = content;
+					},
+					error: function () { // error callback
+						alert("lỗi")
+					}
+				}
+		)
+	}
+	function getComment(comment){
+		let image = comment.user.avatar
+		return `<li>
+            <div class="comet-avatar">
+                <img src="${image}" alt="">
+            </div>
+            <div class="we-comment">
+                <h5><a href="time-line.html" title="">${comment.user.name}</a></h5>
+                <p>${comment.content}</p>
+
+            </div>
+
+        </li>`
+	}
+	function testalert(a){
+		alert(a)
+	}
+
 </script>
 
 </body>	

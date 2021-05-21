@@ -27,13 +27,24 @@ public class PostService implements IPostService {
     }
 
     @Override
+    public Page<Post> findAllByStatusOrderByCreatedAtDesc(Pageable pageable, int status) {
+        return postRepository.findAllByStatusOrderByCreatedAtDesc(pageable,status);
+    }
+
+    @Override
+    public Page<Post> findAllByUserIdOrderByCreatedAtDesc(Pageable pageable, Long id) {
+        return postRepository.findAllByUserIdOrderByCreatedAtDesc(pageable,id);
+    }
+
+
+    @Override
     public void save(Post post) {
         postRepository.save(post);
     }
 
     @Override
     public void remove(Long id) {
-
+        postRepository.deleteById(id);
     }
 
 

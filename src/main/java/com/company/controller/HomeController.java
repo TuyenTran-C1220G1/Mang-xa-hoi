@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
@@ -45,7 +46,8 @@ public class HomeController {
         User user = userServiceImpl.findByUsername(principal.getName());
         ModelAndView modelAndView = new ModelAndView("/newsfeed");
         modelAndView.addObject("user", user);
-// lay ra list not relationship
+
+        // lay ra list not relationship
         List<Relationship> listRelationshipUserFriend = relationshipServiceImpl.findAllByUser(user);
         List<User> listUserRelationshipMe = new ArrayList<>();
         for (Relationship r : listRelationshipUserFriend) {
@@ -68,9 +70,8 @@ public class HomeController {
 
         modelAndView.addObject("postForm",new PostForm());
 
-        // lay tat ca post
-
-        Page<Post> listPost = postService.findAll(pageable);
+        // lay tat ca post o che do publish
+        Page<Post> listPost = postService.findAllByStatusOrderByCreatedAtDesc(pageable,1);
         modelAndView.addObject("listPost", listPost);
 
 
@@ -147,7 +148,7 @@ public class HomeController {
     }
 
     @GetMapping("/timeline")
-    public ModelAndView timeline(Principal principal) {
+    public ModelAndView timeline(Principal principal,Pageable pageable) {
         User user = userServiceImpl.findByUsername(principal.getName());
         ModelAndView modelAndView = new ModelAndView("timeline");
         modelAndView.addObject("user", user);
@@ -175,13 +176,13 @@ public class HomeController {
         modelAndView.addObject("postForm",new PostForm());
 
         //lay ra post cua user
-        modelAndView.addObject("post",postService.findAllByUserId(user.getId()));
-
+        modelAndView.addObject("post",postService.findAllByUserIdOrderByCreatedAtDesc(pageable,user.getId()));
         return modelAndView;
     }
 
     @GetMapping("/timeline-friends2")
     public ModelAndView timeline_friends(Principal principal) {
+        //Lay ra danh sach ban be
         int status = 2;
         User user = userServiceImpl.findByUsername(principal.getName());
         List<Relationship> userFriendRelationshipList = relationshipServiceImpl.findAllByUserAndStatus(user,status);

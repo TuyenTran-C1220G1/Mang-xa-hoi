@@ -72,14 +72,14 @@
                                                     <div class="more-post-optns"><i class="ti-more-alt"></i>
                                                         <ul>
                                                             <li><i class="fa fa-pencil-square-o"></i><a th:href="@{/edit-post-form/{id}(id=${p.getId()})}">Edit Post</a></li>
-                                                            <li><i class="fa fa-trash-o"></i>Delete Post</li>
+                                                            <li><i class="fa fa-trash-o"></i><a th:href="@{/delete/{id}(id=${p.getId()})}" onclick="return confirm('Are you sure to delete?')" th:method="post">Delete Post</a></li>
                                                             <!--																-->
                                                         </ul>
                                                     </div>
                                                 </div>
                                                 <ins><a href="time-line.html" title=""
                                                         th:text="${p.getUser().getUsername()}">Jack Carter</a></ins>
-                                                <span ><i th:text="${p.getCreatedAt()}" class="fa fa-globe"></i> Published: </span>
+                                                <span >Published: <i th:text="${p.getSimpleDate()}" class=""></i></span>
                                             </div>
                                             <div class="post-meta">
                                                 <p th:text="${p.getContent()}">

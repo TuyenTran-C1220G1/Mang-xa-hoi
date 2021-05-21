@@ -20,14 +20,14 @@
 <body>
 	<div th:fragment="header1" class="topbar stick">
 		<div class="logo">
-			<a title="" href="/home"><img src="/images/logo.png" alt=""></a>
+			<a title="" href="/home"><img th:src="@{'/img/images/logo.png'}" alt=""></a>
 		</div>
 		<div class="top-area">
 
 			<div class="top-search">
-				<form method="post" class="">
-					<input type="text" placeholder="Search People, Pages, Groups etc">
-					<button data-ripple><i class="ti-search"></i></button>
+				<form method="get" class="" action="/search_people">
+					<input type="text" name="people" placeholder="Search People...">
+					<button type="submit" data-ripple><i class="ti-search"></i></button>
 				</form>
 			</div>
 			<div class="page-name">
@@ -255,7 +255,7 @@
 	
 	<script src="/js/main.min.js"></script>
 	<script src="/js/jquery-stories.js"></script>
-	<script src="../../../cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
+	<script src="/cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
 	<script src="/js/locationpicker.jquery.js"></script>
 	<script src="/js/map-init.js"></script>
