@@ -33,7 +33,7 @@ public class PostService implements IPostService {
 
     @Override
     public void remove(Long id) {
-
+postRepository.deleteById(id);
     }
 
 

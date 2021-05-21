@@ -36,9 +36,8 @@ public class PostController {
     IRelationshipService relationshipServiceImpl;
 
 
-
     @PostMapping("/createpost")
-    public ModelAndView createPost(Principal principal, @ModelAttribute PostForm postForm){
+    public ModelAndView createPost(Principal principal, @ModelAttribute PostForm postForm) {
 
         User user = userService.findByUsername(principal.getName());
         int likes = 0;
@@ -46,8 +45,8 @@ public class PostController {
         Set<Image> imageSet = new HashSet<>();
         List<MultipartFile> multipartFiles = postForm.getImages();
         List<String> listFileName = new ArrayList<>();
-        for (MultipartFile multipartfiles: multipartFiles
-             ) {
+        for (MultipartFile multipartfiles : multipartFiles
+        ) {
             listFileName.add(multipartfiles.getOriginalFilename());
         }
         try {
@@ -62,13 +61,13 @@ public class PostController {
             image.setImage_link(listFileName.get(i));
             imageSet.add(image);
         }
-        for (Image image: imageSet
-             ) {
+        for (Image image : imageSet
+        ) {
             iImageService.save(image);
         }
 
 
-        Post post = new Post(postForm.getTitle(),postForm.getContent(),time,user,imageSet, likes,postForm.getStatus());
+        Post post = new Post(postForm.getTitle(), postForm.getContent(), time, user, imageSet, likes, postForm.getStatus());
         postService.save(post);
 
         return new ModelAndView("redirect:/home");
@@ -83,24 +82,72 @@ public class PostController {
             modelAndView.addObject("optionalPost", optionalPost.get());
 
             // lay ra list loi moi ket ban
-            List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user,1);
+            List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user, 1);
             modelAndView.addObject("requestFriendList", requestFriendListRelationship);
 
             modelAndView.addObject("user", user);
             return modelAndView;
         } else {
-            ModelAndView modelAndView = new ModelAndView("/404-error");
+            ModelAndView modelAndView = new ModelAndView("/404");
             return modelAndView;
         }
     }
 
     @PostMapping("/edit-post")
-    public ModelAndView updateCustomer(@ModelAttribute("post") Post optionalPost) {
-        postService.save(optionalPost);
+    public ModelAndView edit(@ModelAttribute("optionalPost") PostForm postForm, Principal principal) {
+        Optional<Post> optionalPost = postService.findById(postForm.getId());
+        User user = userService.findByUsername(principal.getName());
+        LocalDateTime time = LocalDateTime.now();
+
+        //neu khong sua anh thi van lay anh cu
+        List<String> listFileName = new ArrayList<>();
+        Set<Image> imageSet = new HashSet<>();
+        List<MultipartFile> multipartFiles = postForm.getImages();
+        if (!multipartFiles.isEmpty()) {
+
+            for (MultipartFile multipartfiles : multipartFiles) {
+                listFileName.add(multipartfiles.getOriginalFilename());
+            }
+            try {
+                for (int i = 0; i < multipartFiles.size(); i++) {
+                    FileCopyUtils.copy(multipartFiles.get(i).getBytes(), new File(fileUpload + listFileName.get(i)));
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            for (int i = 0; i < listFileName.size(); i++) {
+                Image image = new Image();
+                image.setImage_link(listFileName.get(i));
+                imageSet.add(image);
+            }
+            for (Image image : imageSet) {
+                iImageService.save(image);
+            }
+        } else {
+            imageSet = optionalPost.get().getImages();
+        }
+
+        Post editPost = new Post(postForm.getTitle(), postForm.getContent(), time, user, imageSet, postForm.getStatus());
+        postService.save(editPost);
         ModelAndView modelAndView = new ModelAndView("timeline-edit-post");
-        modelAndView.addObject("optionalPost", optionalPost);
+        modelAndView.addObject("user", user);
+        // lay ra list loi moi ket ban
+        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user, 1);
+        modelAndView.addObject("requestFriendList", requestFriendListRelationship);
+
+        modelAndView.addObject("optionalPost", editPost);
+
         modelAndView.addObject("message", "Post updated successfully");
         return modelAndView;
     }
+
+
+    @GetMapping("/delete/{id}")
+    public String deletePost(@PathVariable Long id){
+        postService.remove(id);
+        return "redirect:/timeline";
+    }
+
+
 
 }

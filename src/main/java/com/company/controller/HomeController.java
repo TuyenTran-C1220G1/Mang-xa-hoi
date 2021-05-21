@@ -43,7 +43,7 @@ public class HomeController {
     public ModelAndView showHome(Principal principal, Pageable pageable) {
         principal.getName();
         User user = userServiceImpl.findByUsername(principal.getName());
-        ModelAndView modelAndView = new ModelAndView("/newsfeed");
+        ModelAndView modelAndView = new ModelAndView("newsfeed");
         modelAndView.addObject("user", user);
 // lay ra list not relationship
         List<Relationship> listRelationshipUserFriend = relationshipServiceImpl.findAllByUser(user);

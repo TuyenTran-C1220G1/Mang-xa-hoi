@@ -19,6 +19,7 @@ public class Post {
     private String tittle;
     private String content;
     private LocalDateTime createdAt;
+
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
     private User user;
@@ -34,6 +35,15 @@ public class Post {
     private int status;
 
     public Post() {
+    }
+
+    public Post(String tittle, String content, LocalDateTime createdAt, User user, Set<Image> images, int status) {
+        this.tittle = tittle;
+        this.content = content;
+        this.createdAt = createdAt;
+        this.user = user;
+        this.images = images;
+        this.status = status;
     }
 
     public Post(Long id, String tittle, String content, LocalDateTime createdAt, User user, Set<Image> images, int likes, int status) {

@@ -72,7 +72,7 @@
                                                     <div class="more-post-optns"><i class="ti-more-alt"></i>
                                                         <ul>
                                                             <li><i class="fa fa-pencil-square-o"></i><a th:href="@{/edit-post-form/{id}(id=${p.getId()})}">Edit Post</a></li>
-                                                            <li><i class="fa fa-trash-o"></i>Delete Post</li>
+                                                            <li><i class="fa fa-trash-o"></i><a th:href="@{/delete/{id}(id=${p.getId()})}" onclick="return confirm('Are you sure to delete?')" th:method="post">Delete Post</a></li>
                                                             <!--																-->
                                                         </ul>
                                                     </div>
