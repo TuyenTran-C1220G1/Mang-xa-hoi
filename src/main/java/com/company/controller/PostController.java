@@ -31,21 +31,20 @@ import java.util.*;
 public class PostController {
     @Autowired
     UserServiceImpl userService;
-
     @Autowired
-    IPostService postService;
-
+    PostService postService;
     @Value("${file-upload}")
     private String fileUpload;
-
     @Autowired
     IImageService iImageService;
-
     @Autowired
     IRelationshipService relationshipServiceImpl;
 
+
+
     @PostMapping("/createpost")
     public ModelAndView createPost(Principal principal, @ModelAttribute PostForm postForm){
+
         User user = userService.findByUsername(principal.getName());
         int likes = 0;
         LocalDateTime time = LocalDateTime.now();
@@ -73,8 +72,10 @@ public class PostController {
             iImageService.save(image);
         }
 
+
         Post post = new Post(postForm.getTitle(),postForm.getContent(),time,user,imageSet, likes,postForm.getStatus());
         postService.save(post);
+
         return new ModelAndView("redirect:/home");
     }
 
@@ -90,7 +91,7 @@ public class PostController {
             List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user,1);
             modelAndView.addObject("requestFriendList", requestFriendListRelationship);
 
-
+            modelAndView.addObject("user", user);
             return modelAndView;
         } else {
             ModelAndView modelAndView = new ModelAndView("/404-error");

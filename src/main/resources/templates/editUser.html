@@ -89,12 +89,12 @@
 														<span>Change your avatar</span>
 
 													</div>
-													<form method="post" th:action="@{/update}" th:object="${user}" novalidate="novalidate" enctype="multipart/form-data">
+													<form method="post" th:action="@{/update/{id}(id=${editUser.getId()})}" th:object="${editUser}" novalidate="novalidate" enctype="multipart/form-data">
 														<span th:if="${message}"><p th:text="${message}"></p></span>
 
 														<div class="setting-meta">
 														<div class="change-photo">
-															<figure><img th:src="@{${'/imageP/'+user.getAvatar()}}" alt="" height="50px" width="50px"></figure>
+															<figure><img th:src="@{${'/imageP/'+editUser.getAvatar()}}" alt="" height="50px" width="50px"></figure>
 															<div class="edit-img">
 																	<label class="fileContainer">
 																		<i class="fa fa-camera-retro"></i>
@@ -107,7 +107,7 @@
 														<span>Change your back-ground</span>
 														<div class="setting-meta">
 															<div class="change-photo">
-																<img th:src="@{${'/imageP/'+user.getBackground()}}" alt="" height="100px">
+																<img th:src="@{${'/imageP/'+editUser.getBackground()}}" alt="" height="100px">
 																<div class="edit-img">
 																		<label class="fileContainer">
 																			<i class="fa fa-camera-retro"></i>

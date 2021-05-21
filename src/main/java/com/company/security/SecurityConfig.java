@@ -35,7 +35,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception { //permitAll tat ca deu co quyen truy cap
         httpSecurity.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll()
                 .and().authorizeRequests().antMatchers("/user**").hasRole("USER")
-                .and().authorizeRequests().antMatchers("/setting","/home").hasRole("USER")
                 .and().authorizeRequests().antMatchers("/admin**").hasRole("ADMIN")
                 .and()
                 .formLogin().loginProcessingUrl("/j_spring_security_check")

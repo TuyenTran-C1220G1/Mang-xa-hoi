@@ -58,7 +58,7 @@
                                 </div><!-- who's following -->
                             </aside>
                         </div><!-- sidebar -->
-                        <div class="col-lg-6">
+                        <div class="col-lg-6" >
                             <div class="central-meta postbox" th:replace="/newsfeed::Create_post"></div>
                             <div class="" th:each="p: ${post}">
                                 <div class="central-meta item">
@@ -71,7 +71,7 @@
                                                 <div class="more">
                                                     <div class="more-post-optns"><i class="ti-more-alt"></i>
                                                         <ul>
-                                                            <li><i class="fa fa-pencil-square-o"></i><a th:href="@{/edit-post-form/__${p.id}__}">Edit Post</a></li>
+                                                            <li><i class="fa fa-pencil-square-o"></i><a th:href="@{/edit-post-form/{id}(id=${p.getId()})}">Edit Post</a></li>
                                                             <li><i class="fa fa-trash-o"></i>Delete Post</li>
                                                             <!--																-->
                                                         </ul>

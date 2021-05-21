@@ -11,7 +11,7 @@ public class CommentForm {
 
     private User user;
 
-    private Post post;
+    private Long postId;
     private Date createdAt;
     private String content;
 
@@ -33,12 +33,12 @@ public class CommentForm {
         this.user = user;
     }
 
-    public Post getPost() {
-        return post;
+    public Long getPostId() {
+        return postId;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 
     public Date getCreatedAt() {
@@ -75,13 +75,17 @@ public class CommentForm {
 
     private int likes;
 
-    public CommentForm(Long id, User user, Post post, Date createdAt, String content, int status, int likes) {
-        this.id = id;
-        this.user = user;
-        this.post = post;
-        this.createdAt = createdAt;
+
+
+    public CommentForm(Long postId, String content) {
+        this.postId = postId;
         this.content = content;
-        this.status = status;
-        this.likes = likes;
+    }
+
+    public CommentForm() {
+    }
+
+    public CommentForm(String content) {
+        this.content = content;
     }
 }

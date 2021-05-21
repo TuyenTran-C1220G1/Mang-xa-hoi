@@ -2,9 +2,10 @@ package com.company.service.impl;
 
 import com.company.model.Comment;
 import com.company.service.ICommentService;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class CommentService implements ICommentService {
     @Override
     public Iterable<Comment> findAll() {
