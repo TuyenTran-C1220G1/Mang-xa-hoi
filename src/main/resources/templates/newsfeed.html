@@ -227,15 +227,15 @@
 													<img th:src="@{${'/imageP/'+post.getUser().getAvatar()}}" alt="">
 												</figure>
 												<div class="friend-name">
-													<div class="more">
-														<div class="more-post-optns"><i class="ti-more-alt"></i>
-															<ul>
-																<li><i class="fa fa-pencil-square-o"></i>Edit Post</li>
-																<li><i class="fa fa-trash-o"></i>Delete Post</li>
-<!--																-->
-															</ul>
-														</div>
-													</div>
+<!--													<div class="more">-->
+<!--														<div class="more-post-optns"><i class="ti-more-alt"></i>-->
+<!--															<ul>-->
+<!--																<li><i class="fa fa-pencil-square-o"></i>Edit Post</li>-->
+<!--																<li><i class="fa fa-trash-o"></i>Delete Post</li>-->
+<!--&lt;!&ndash;																&ndash;&gt;-->
+<!--															</ul>-->
+<!--														</div>-->
+<!--													</div>-->
 													<ins><a href="time-line.html" title="" th:text="${post.getUser().getUsername()}">Jack Carter</a></ins>
 													<span th:text="${post.getCreatedAt()}"><i class="fa fa-globe" ></i> published: </span>
 												</div>

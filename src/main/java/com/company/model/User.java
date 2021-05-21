@@ -61,20 +61,10 @@ public class User {
 
     @Lob
     private String background;
-
-
     private String description;
-
-
     private Date dob;
-
-
     private String phone;
-
-
     private String country;
-
-
     private String gender;
 
     public User(String username, String password, List<GrantedAuthority> authorities) {

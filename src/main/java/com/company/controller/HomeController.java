@@ -43,7 +43,7 @@ public class HomeController {
     public ModelAndView showHome(Principal principal, Pageable pageable) {
         principal.getName();
         User user = userServiceImpl.findByUsername(principal.getName());
-        ModelAndView modelAndView = new ModelAndView("/newsfeed");
+        ModelAndView modelAndView = new ModelAndView("newsfeed");
         modelAndView.addObject("user", user);
 // lay ra list not relationship
         List<Relationship> listRelationshipUserFriend = relationshipServiceImpl.findAllByUser(user);
@@ -71,13 +71,6 @@ public class HomeController {
 
         Page<Post> listPost = postService.findAll(pageable);
         modelAndView.addObject("listPost", listPost);
-
-        // lay tat ca post
-
-        Page<Post> listPost = postService.findAll(pageable);
-        modelAndView.addObject("listPost", listPost);
-
-
         return modelAndView;
     }
 
