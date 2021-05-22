@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import java.sql.Date;
@@ -65,12 +66,10 @@ public class User {
 
     private String description;
 
-
     private Date dob;
 
-
+//    @Pattern(regexp = "(0[1-9])+([0-9]{8})", message = "Input 10 digits starts with 0")
     private String phone;
-
 
     private String country;
 

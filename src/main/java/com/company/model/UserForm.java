@@ -1,9 +1,12 @@
 package com.company.model;
 
 
+import org.hibernate.annotations.NaturalId;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -11,8 +14,13 @@ import java.util.List;
 
 public class UserForm {
     private Long id;
+    @NotBlank
+    @Size(min = 3, max = 50)
     private String name;
+
     private String username;
+
+    @Email
     private String email;
     private String password;
     private List<Role> roles = new ArrayList<>();
@@ -20,6 +28,8 @@ public class UserForm {
     private MultipartFile background;
     private String description;
     private Date dob;
+
+//    @Pattern(regexp = "(0[1-9])+([0-9]{8})", message = "Input 10 digits starts with 0")
     private String phone;
     private String country;
     private String gender;
@@ -51,6 +61,7 @@ public class UserForm {
         this.avatar = avatar;
         this.background = background;
     }
+
 
     public Long getId() {
         return id;

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -49,6 +50,11 @@ public class PostService implements IPostService {
     @Override
     public void remove(Long id) {
         postRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Post> findAllByStatus(int status) {
+        return postRepository.findAllByStatus(status);
     }
 
 

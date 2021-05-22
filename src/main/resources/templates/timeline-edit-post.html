@@ -55,14 +55,13 @@
                         </div><!-- sidebar -->
 
                         <div class="col-lg-6">
-                            <div class="central-meta postbox"></div>
+<!--                            <div class="central-meta postbox"></div>-->
                             <span th:if="${message}"><p th:text="${message}"></p></span>
-                            <form th:action="@{/edit-post}" method="post" th:object="${optionalPost}"
-                                  enctype="multipart/form-data">
+                            <form th:action="@{/edit-post}" method="post" th:object="${optionalPost}" enctype="multipart/form-data">
                                 <div class="">
                                     <div class="central-meta item">
-                                        <div class="user-post">
-                                            <div class="friend-info">
+<!--                                        <div class="user-post">-->
+<!--                                            <div class="friend-info">-->
                                                 <div class="friend-name">
                                                     <ins><a href="time-line.html" title=""></a></ins>
 
@@ -73,22 +72,25 @@
                                                         <label>Content: </label>
                                                         <textarea type="text" th:field="*{content}"></textarea>
                                                     </div>
+                                                    <select class="form-select form-select-sm" th:field="*{status}">
+                                                        <option th:value="0"><i class="fa fa-globe fa-fw"></i>Public</option>
+                                                        <option th:value="1" ><i class="fa fa-lock fa-fw"></i> Only me</option>
+                                                        <option th:value="2" ><i class="fa fa-users fa-fw"></i> Friends</option>
+
+                                                    </select>
                                                     <figure>
                                                         <div class="img-bunch">
                                                             <div class="row">
-<!--                                                                <div class="col-lg-6 col-md-6 col-sm-6">-->
-                                                                    <div class="attachments">
-                                                                        <ul>
-                                                                            <li>
-                                                                                <i class="fa fa-image"></i>
-                                                                                <label class="fileContainer">
-                                                                                    <input type="file" th:field="*{images}" multiple>
-                                                                                </label>
-                                                                            </li>
-                                                                        </ul>
-<!--                                                                        <button class="post-btn" type="submit" data-ripple="">Post</button>-->
-                                                                    </div>
+                                                                    <div class="c-form">
+                                                                        <div class="edit-img">
+                                                                            <label class="fileContainer">
+                                                                                <input type="file" th:field="*{images}" multiple>
 
+                                                                                <i class="fa fa-camera-retro"></i>
+                                                                                Click here to edit photos
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
                                                                     <div class="img-bunch">
                                                                         <div class="row">
                                                                             <div class="col-lg-6 col-md-6 col-sm-6"
@@ -108,10 +110,10 @@
                                                         </div>
                                                     </figure>
                                                 </div>
-                                            </div>
+<!--                                            </div>-->
                                         </div>
                                     </div><!-- album post -->
-                                </div><!-- centerl meta -->
+<!--                                </div>&lt;!&ndash; centerl meta &ndash;&gt;-->
                                 <div>
                                     <button class="post-btn" type="submit" data-ripple="">Post</button>
 
@@ -123,34 +125,34 @@
                         <div class="col-lg-3">
                             <aside class="sidebar static right">
 
-                                <div class="widget stick-widget">
-                                    <h4 class="widget-title">Recent Links <a title="" href="#" class="see-all">See
-                                        All</a></h4>
-                                    <ul class="recent-links">
-                                        <li>
-                                            <figure><img src="images/resources/recentlink-1.jpg" alt=""></figure>
-                                            <div class="re-links-meta">
-                                                <h6><a href="#" title="">moira's fade reaches much farther than you
-                                                    think.</a></h6>
-                                                <span>2 weeks ago </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <figure><img src="images/resources/recentlink-2.jpg" alt=""></figure>
-                                            <div class="re-links-meta">
-                                                <h6><a href="#" title="">daniel asks if we want him to do the voice of
-                                                    doomfist</a></h6>
-                                                <span>3 months ago </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <figure><img src="images/resources/recentlink-3.jpg" alt=""></figure>
-                                            <div class="re-links-meta">
-                                                <h6><a href="#" title="">the pitnik overwatch scandals.</a></h6>
-                                                <span>1 day before</span>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                <div class="widget stick-widget" th:replace="/newsfeed::rencent-links">
+<!--                                    <h4 class="widget-title">Recent Links <a title="" href="#" class="see-all">See-->
+<!--                                        All</a></h4>-->
+<!--                                    <ul class="recent-links">-->
+<!--                                        <li>-->
+<!--                                            <figure><img src="images/resources/recentlink-1.jpg" alt=""></figure>-->
+<!--                                            <div class="re-links-meta">-->
+<!--                                                <h6><a href="#" title="">moira's fade reaches much farther than you-->
+<!--                                                    think.</a></h6>-->
+<!--                                                <span>2 weeks ago </span>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                        <li>-->
+<!--                                            <figure><img src="images/resources/recentlink-2.jpg" alt=""></figure>-->
+<!--                                            <div class="re-links-meta">-->
+<!--                                                <h6><a href="#" title="">daniel asks if we want him to do the voice of-->
+<!--                                                    doomfist</a></h6>-->
+<!--                                                <span>3 months ago </span>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                        <li>-->
+<!--                                            <figure><img src="images/resources/recentlink-3.jpg" alt=""></figure>-->
+<!--                                            <div class="re-links-meta">-->
+<!--                                                <h6><a href="#" title="">the pitnik overwatch scandals.</a></h6>-->
+<!--                                                <span>1 day before</span>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
                                 </div><!-- recent links -->
                             </aside>
                         </div><!-- sidebar -->

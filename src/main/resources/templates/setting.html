@@ -122,6 +122,8 @@
 															<div>
 																<label>Name</label>
 																<input type="text" th:field="*{name}">
+<!--																<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>-->
+
 															</div>
 
 															<div>
@@ -135,6 +137,7 @@
 															<div>
 																<label>Phone number</label>
 																<input type="text" th:field="*{phone}">
+<!--																<p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>-->
 															</div>
 															<div>
 																<label>Country</label>
@@ -142,7 +145,10 @@
 															</div>
 															<div>
 																<label>Gender</label>
-																<input type="text" th:field="*{gender}">
+																<select class="form-select form-select-sm" th:field="*{gender}">
+																	<option th:value="Male"><i class="fa fa-globe fa-fw"></i>Male</option>
+																	<option th:value="Female" ><i class="fa fa-lock fa-fw"></i>Female</option>
+																</select>
 															</div>
 															<div>
 																<button type="button"  data-ripple="">Cancel</button>

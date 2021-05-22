@@ -1,15 +1,12 @@
 package com.company.service;
 
-import com.company.model.Image;
 import com.company.model.Post;
-import com.company.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface IPostService extends IGeneralService<Post>{
     Iterable<Post> findAllByUserId(Long id);
@@ -19,4 +16,5 @@ public interface IPostService extends IGeneralService<Post>{
     Page<Post> findAllByUserIdOrderByCreatedAtDesc(Pageable pageable,Long id);
     void remove(Long id);
 
+    List<Post> findAllByStatus(int status);
 }

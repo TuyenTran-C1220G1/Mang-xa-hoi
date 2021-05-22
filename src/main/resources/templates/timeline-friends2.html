@@ -155,11 +155,11 @@
                                                         <!--                                                            <span>Los Angeles, CA</span>-->
                                                     </div>
                                                     <br>
-                                                    <a class="send-mesg" href="#" title="">Unfriend</a>
+                                                    <a class="" th:href="@{/unFriend/{id}(id=${r.getId()})}" title="" onclick="return confirm('Are you sure you want to unfriend?')">Unfriend</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6" th:each="r: ${userRelationshipList}">
+                                        <div class="col-lg-3 col-md-6 col-sm-6" th:each="r1: ${userRelationshipList}">
                                             <div class="friend-block">
                                                 <!--                                                <div class="more-opotnz">-->
                                                 <!--                                                    <i class="fa fa-ellipsis-h"></i>-->
@@ -171,18 +171,18 @@
                                                 <!--                                                    </ul>-->
                                                 <!--                                                </div>-->
                                                 <figure>
-                                                    <img th:src="@{'/imageP/'+ ${r.user.getAvatar()}}"
+                                                    <img th:src="@{'/imageP/'+ ${r1.user.getAvatar()}}"
                                                          alt="images/resources/frnd-figure1.jpg">
                                                 </figure>
 
                                                 <div class="frnd-meta">
                                                     <div class="frnd-name">
-                                                        <a href="#" title=""><span
-                                                                th:text="${r.user.getUsername()}"></span></a>
+                                                        <a th:href="@{/detailProfileFriend/{id}(id=${r1.getUser().getId()})}" title=""><span
+                                                                th:text="${r1.user.getUsername()}"></span></a>
                                                         <!--                                                            <span>Los Angeles, CA</span>-->
                                                     </div>
                                                     <br>
-                                                    <a class="" href="#" title="">Unfriend</a>
+                                                    <a class="" th:href="@{/unFriend/{id}(id=${r1.getId()})}" title="" onclick="return confirm('Are you sure you want to unfriend?')">Unfriend</a>
                                                 </div>
                                             </div>
                                         </div>

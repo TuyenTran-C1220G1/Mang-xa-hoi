@@ -46,4 +46,9 @@ public class RelationshipServiceImpl implements IRelationshipService {
         return relationshipRepository.findById(id);
     }
 
+    @Override
+    public void deleteById(Long id) {
+        relationshipRepository.deleteById(id);
+    }
+
 }

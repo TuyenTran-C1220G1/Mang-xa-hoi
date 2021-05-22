@@ -1,7 +1,6 @@
 package com.company.controller;
 
 import com.company.model.*;
-import com.company.service.IImageService;
 import com.company.service.IPostService;
 import com.company.service.IRelationshipService;
 import com.company.service.impl.UserServiceImpl;
@@ -26,6 +25,8 @@ import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -40,15 +41,12 @@ public class HomeController {
     @Autowired
     IPostService postService;
 
-    @Autowired
-    IImageService iImageService;
-
 
     @GetMapping("/home")
     public ModelAndView showHome(Principal principal, Pageable pageable) {
         principal.getName();
         User user = userServiceImpl.findByUsername(principal.getName());
-        ModelAndView modelAndView = new ModelAndView("newsfeed");
+        ModelAndView modelAndView = new ModelAndView("/newsfeed");
         modelAndView.addObject("user", user);
 
         // lay ra list not relationship
@@ -69,15 +67,51 @@ public class HomeController {
         modelAndView.addObject("noRelationshipUserList", notRelationshipListUser);
 
         // lay ra list loi moi ket ban
-        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user,1);
+        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user, 1);
         modelAndView.addObject("requestFriendList", requestFriendListRelationship);
 
-        modelAndView.addObject("postForm",new PostForm());
+        modelAndView.addObject("postForm", new PostForm());
 
-        // lay tat ca post o che do public
-        Page<Post> listPost = postService.findAllByStatusOrderByCreatedAtDesc(pageable,1);
-        modelAndView.addObject("listPost", listPost);
+        // lay tat ca post o che do publish
+        List<Post> listPostPublic = postService.findAllByStatus(1);
+//        modelAndView.addObject("listPost", listPostPublic);
 
+        // lay tat ca post o che do friend
+        List<Post> listPostAllFriend = postService.findAllByStatus(2);
+
+
+        //Lấy ra danh sách friend và cả tôi
+        List<User> userListFriend = new ArrayList<>();
+        List<Relationship> userFriendRelationshipList = relationshipServiceImpl.findAllByUserAndStatus(user, 2);
+        for (Relationship r : userFriendRelationshipList) {
+            userListFriend.add(r.getUserFriend());
+        }
+        List<Relationship> userRelationshipList = relationshipServiceImpl.findAllByUserFriendAndStatus(user, 2);
+        for (Relationship r1 : userRelationshipList) {
+            userListFriend.add(r1.getUser());
+        }
+
+        userListFriend.add(user);
+
+
+        // Lọc danh sách post ở chế độ friend trong listpostfriend
+        List<Post> allPostFriend = new ArrayList<>();
+        for (User userFriend : userListFriend) {
+            for (Post post : listPostAllFriend) {
+                if (post.getUser().equals(userFriend)) {
+                    allPostFriend.add(post);
+                }
+            }
+        }
+
+        // cộng 2 list public và friend
+        List<Post> publicAndFriendListPost = new ArrayList<>();
+        publicAndFriendListPost.addAll(listPostPublic);
+        publicAndFriendListPost.addAll(allPostFriend);
+
+        Collections.sort(publicAndFriendListPost);
+
+        modelAndView.addObject("listPost", publicAndFriendListPost);
 
         return modelAndView;
     }
@@ -87,15 +121,15 @@ public class HomeController {
 
         int status = 2;
         User user = userServiceImpl.findByUsername(principal.getName());
-        List<Relationship> userFriendRelationshipList = relationshipServiceImpl.findAllByUserAndStatus(user,status);
-        List<Relationship> userRelationshipList = relationshipServiceImpl.findAllByUserFriendAndStatus(user,status);
+        List<Relationship> userFriendRelationshipList = relationshipServiceImpl.findAllByUserAndStatus(user, status);
+        List<Relationship> userRelationshipList = relationshipServiceImpl.findAllByUserFriendAndStatus(user, status);
         ModelAndView modelAndView = new ModelAndView("about");
         modelAndView.addObject("user", user);
         modelAndView.addObject("userFriendRelationshipList", userFriendRelationshipList);
         modelAndView.addObject("userRelationshipList", userRelationshipList);
 
         // lay ra list loi moi ket ban
-        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user,1);
+        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user, 1);
         modelAndView.addObject("requestFriendList", requestFriendListRelationship);
 
         return modelAndView;
@@ -152,7 +186,7 @@ public class HomeController {
     }
 
     @GetMapping("/timeline")
-    public ModelAndView timeline(Principal principal,Pageable pageable) {
+    public ModelAndView timeline(Principal principal, Pageable pageable) {
         User user = userServiceImpl.findByUsername(principal.getName());
         ModelAndView modelAndView = new ModelAndView("timeline");
         modelAndView.addObject("user", user);
@@ -175,12 +209,12 @@ public class HomeController {
         modelAndView.addObject("noRelationshipUserList", notRelationshipListUser);
 
         // lay ra list loi moi ket ban
-        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user,1);
+        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user, 1);
         modelAndView.addObject("requestFriendList", requestFriendListRelationship);
-        modelAndView.addObject("postForm",new PostForm());
+        modelAndView.addObject("postForm", new PostForm());
 
         //lay ra post cua user
-        modelAndView.addObject("post",postService.findAllByUserIdOrderByCreatedAtDesc(pageable,user.getId()));
+        modelAndView.addObject("post", postService.findAllByUserIdOrderByCreatedAtDesc(pageable, user.getId()));
         return modelAndView;
     }
 
@@ -189,20 +223,19 @@ public class HomeController {
         //Lay ra danh sach ban be
         int status = 2;
         User user = userServiceImpl.findByUsername(principal.getName());
-        List<Relationship> userFriendRelationshipList = relationshipServiceImpl.findAllByUserAndStatus(user,status);
-        List<Relationship> userRelationshipList = relationshipServiceImpl.findAllByUserFriendAndStatus(user,status);
+        List<Relationship> userFriendRelationshipList = relationshipServiceImpl.findAllByUserAndStatus(user, status);
+        List<Relationship> userRelationshipList = relationshipServiceImpl.findAllByUserFriendAndStatus(user, status);
         ModelAndView modelAndView = new ModelAndView("timeline-friends2");
         modelAndView.addObject("user", user);
         modelAndView.addObject("userFriendRelationshipList", userFriendRelationshipList);
         modelAndView.addObject("userRelationshipList", userRelationshipList);
 
         // lay ra list loi moi ket ban
-        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user,1);
+        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user, 1);
         modelAndView.addObject("requestFriendList", requestFriendListRelationship);
 
         return modelAndView;
     }
-
 
 
     @GetMapping("/edit")
@@ -212,7 +245,7 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView("/setting", "user", user);
 
         // lay ra list loi moi ket ban
-        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user,1);
+        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user, 1);
         modelAndView.addObject("requestFriendList", requestFriendListRelationship);
 
         return modelAndView;
@@ -222,8 +255,10 @@ public class HomeController {
     private String fileUpload;
 
     @PostMapping("/update")
-    public ModelAndView editUser(@ModelAttribute("user") UserForm userForm, Principal principal) {
-
+    public ModelAndView editUser( @ModelAttribute("user") UserForm userForm, Principal principal, BindingResult bindingResult) {
+//        if (bindingResult.hasFieldErrors()) {
+//            return new ModelAndView("setting");
+//        }
         principal.getName();
         User user = userServiceImpl.findByUsername(principal.getName());
         MultipartFile avatar = userForm.getAvatar();
@@ -261,7 +296,7 @@ public class HomeController {
         modelAndView.addObject("message", "Update successfully!");
 
         // lay ra list loi moi ket ban
-        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user,1);
+        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user, 1);
         modelAndView.addObject("requestFriendList", requestFriendListRelationship);
 
         return modelAndView;
@@ -272,20 +307,20 @@ public class HomeController {
         int status = 2;
         User user = userServiceImpl.findByUsername(principal.getName());
 
-        List<Relationship> userFriendRelationshipList = relationshipServiceImpl.findAllByUserAndStatus(user,status);
+        List<Relationship> userFriendRelationshipList = relationshipServiceImpl.findAllByUserAndStatus(user, status);
 
-        List<Relationship> list1=new ArrayList<>();
-        for (Relationship relationship: userFriendRelationshipList) {
-            if (relationship.getUserFriend().getUsername().toUpperCase().contains(userName.toUpperCase())){
+        List<Relationship> list1 = new ArrayList<>();
+        for (Relationship relationship : userFriendRelationshipList) {
+            if (relationship.getUserFriend().getUsername().toUpperCase().contains(userName.toUpperCase())) {
                 list1.add(relationship);
             }
         }
 
-        List<Relationship> userRelationshipList = relationshipServiceImpl.findAllByUserFriendAndStatus(user,status);
-        List<Relationship> list2=new ArrayList<>();
+        List<Relationship> userRelationshipList = relationshipServiceImpl.findAllByUserFriendAndStatus(user, status);
+        List<Relationship> list2 = new ArrayList<>();
 
-        for (Relationship relationship: userRelationshipList) {
-            if (relationship.getUser().getUsername().toUpperCase().contains(userName.toUpperCase())){
+        for (Relationship relationship : userRelationshipList) {
+            if (relationship.getUser().getUsername().toUpperCase().contains(userName.toUpperCase())) {
                 list2.add(relationship);
             }
         }
@@ -296,7 +331,7 @@ public class HomeController {
         modelAndView.addObject("userRelationshipList", list2);
 
         // lay ra list loi moi ket ban
-        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user,1);
+        List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user, 1);
         modelAndView.addObject("requestFriendList", requestFriendListRelationship);
 
         return modelAndView;
