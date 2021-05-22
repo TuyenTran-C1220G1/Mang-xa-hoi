@@ -100,7 +100,8 @@
                                                 <div class="row merged20">
                                                     <div class="col-lg-7 col-md-7 col-sm-7">
                                                         <form action="/search" method="get">
-                                                            <input name="search" type="text" placeholder="Search Friend">
+                                                            <input name="search" type="text"
+                                                                   placeholder="Search Friend">
                                                             <button type="submit"><i class="fa fa-search"></i></button>
                                                         </form>
                                                     </div>
@@ -112,53 +113,85 @@
                                 </div><!-- title block -->
                                 <div class="central-meta padding30">
                                     <div class="row merged20">
+                                        <!-- hien danh sach khong co moi quan he -->
+                                        <div class="col-lg-3 col-md-6 col-sm-6"
+                                             th:each="p: ${resultListPeople}">
+                                            <div class="friend-block">
 
-                                            <div class="col-lg-3 col-md-6 col-sm-6" th:each="r: ${userFriendRelationshipList}">
-                                                <div class="friend-block" >
-
-                                                    <figure>
-                                                        <img  th:src="@{'/imageP/'+ ${r.userFriend.getAvatar()}}" alt="images/resources/frnd-figure1.jpg">
-                                                    </figure>
-
-                                                    <div class="frnd-meta">
-                                                        <div class="frnd-name">
-                                                            <a th:href="@{/detailProfileFriend/{id}(id=${r.getUserFriend().getId()})}" title=""><span th:text="${r.userFriend.getUsername()}"></span></a>
-<!--                                                            <span>Los Angeles, CA</span>-->
-                                                        </div><br>
-                                                        <a class="send-mesg" href="#" title="">Unfriend</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6" th:each="r: ${userRelationshipList}">
-                                            <div class="friend-block" >
-<!--                                                <div class="more-opotnz">-->
-<!--                                                    <i class="fa fa-ellipsis-h"></i>-->
-<!--                                                    <ul>-->
-<!--                                                        <li><a href="#" title="">Block</a></li>-->
-<!--                                                        <li><a href="#" title="">UnBlock</a></li>-->
-<!--                                                        <li><a href="#" title="">Mute Notifications</a></li>-->
-<!--                                                        <li><a href="#" title="">hide from friend list</a></li>-->
-<!--                                                    </ul>-->
-<!--                                                </div>-->
                                                 <figure>
-                                                    <img  th:src="@{'/imageP/'+ ${r.user.getAvatar()}}" alt="images/resources/frnd-figure1.jpg">
+                                                    <img th:src="@{'/imageP/'+ ${p.avatar}}"
+                                                         alt="images/resources/frnd-figure1.jpg">
                                                 </figure>
 
                                                 <div class="frnd-meta">
                                                     <div class="frnd-name">
-                                                        <a href="#" title=""><span th:text="${r.user.getUsername()}"></span></a>
+                                                        <a th:href="@{/detailProfileFriend/{id}(id=${p.id})}"
+                                                           title=""><span
+                                                                th:text="${p.username}"></span></a>
                                                         <!--                                                            <span>Los Angeles, CA</span>-->
-                                                    </div><br>
+                                                    </div>
+                                                    <br>
+                                                    <a class="" th:href="@{/addFriend/{id}(id=${p.getId()})}" title="">Addfriend</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- hien danh sach ban be -->
+                                        <div class="col-lg-3 col-md-6 col-sm-6"
+                                             th:each="r: ${userFriendRelationshipList}">
+                                            <div class="friend-block">
+
+                                                <figure>
+                                                    <img th:src="@{'/imageP/'+ ${r.userFriend.getAvatar()}}"
+                                                         alt="images/resources/frnd-figure1.jpg">
+                                                </figure>
+
+                                                <div class="frnd-meta">
+                                                    <div class="frnd-name">
+                                                        <a th:href="@{/detailProfileFriend/{id}(id=${r.getUserFriend().getId()})}"
+                                                           title=""><span
+                                                                th:text="${r.userFriend.getUsername()}"></span></a>
+                                                        <!--                                                            <span>Los Angeles, CA</span>-->
+                                                    </div>
+                                                    <br>
                                                     <a class="send-mesg" href="#" title="">Unfriend</a>
                                                 </div>
                                             </div>
                                         </div>
-<!--                                            -->
+                                        <div class="col-lg-3 col-md-6 col-sm-6" th:each="r: ${userRelationshipList}">
+                                            <div class="friend-block">
+                                                <!--                                                <div class="more-opotnz">-->
+                                                <!--                                                    <i class="fa fa-ellipsis-h"></i>-->
+                                                <!--                                                    <ul>-->
+                                                <!--                                                        <li><a href="#" title="">Block</a></li>-->
+                                                <!--                                                        <li><a href="#" title="">UnBlock</a></li>-->
+                                                <!--                                                        <li><a href="#" title="">Mute Notifications</a></li>-->
+                                                <!--                                                        <li><a href="#" title="">hide from friend list</a></li>-->
+                                                <!--                                                    </ul>-->
+                                                <!--                                                </div>-->
+                                                <figure>
+                                                    <img th:src="@{'/imageP/'+ ${r.user.getAvatar()}}"
+                                                         alt="images/resources/frnd-figure1.jpg">
+                                                </figure>
+
+                                                <div class="frnd-meta">
+                                                    <div class="frnd-name">
+                                                        <a href="#" title=""><span
+                                                                th:text="${r.user.getUsername()}"></span></a>
+                                                        <!--                                                            <span>Los Angeles, CA</span>-->
+                                                    </div>
+                                                    <br>
+                                                    <a class="" href="#" title="">Unfriend</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--                                            -->
                                     </div>
-<!--                                    <div class="lodmore">-->
-<!--                                        <span>Viewing 1-16 of 30 friends</span>-->
-<!--                                        <button class="btn-view btn-load-more"></button>-->
-<!--                                    </div>-->
+                                    <!--                                    <div class="lodmore">-->
+                                    <!--                                        <span>Viewing 1-16 of 30 friends</span>-->
+                                    <!--                                        <button class="btn-view btn-load-more"></button>-->
+                                    <!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -168,8 +201,8 @@
         </div>
     </section><!-- content -->
 
-<!--    <a title="Your Cart Items" href="shop-cart.html" class="shopping-cart" data-toggle="tooltip">Cart <i-->
-<!--            class="fa fa-shopping-bag"></i><span>02</span></a>-->
+    <!--    <a title="Your Cart Items" href="shop-cart.html" class="shopping-cart" data-toggle="tooltip">Cart <i-->
+    <!--            class="fa fa-shopping-bag"></i><span>02</span></a>-->
 
     <div class="bottombar">
         <div class="container">

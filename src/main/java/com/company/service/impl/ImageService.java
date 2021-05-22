@@ -1,6 +1,7 @@
 package com.company.service.impl;
 
 import com.company.model.Image;
+import com.company.model.User;
 import com.company.repository.IImageRepository;
 import com.company.service.IImageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,10 @@ public class ImageService implements IImageService {
     @Override
     public void remove(Long id) {
 
+    }
+
+    @Override
+    public Iterable<Image> findAllByUserId(Long id) {
+        return iImageRepository.findAllByUserId(id);
     }
 }

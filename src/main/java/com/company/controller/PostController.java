@@ -36,8 +36,9 @@ public class PostController {
     IRelationshipService relationshipServiceImpl;
 
 
+
     @PostMapping("/createpost")
-    public ModelAndView createPost(Principal principal, @ModelAttribute PostForm postForm) {
+    public ModelAndView createPost(Principal principal, @ModelAttribute PostForm postForm){
 
         User user = userService.findByUsername(principal.getName());
         int likes = 0;
@@ -45,8 +46,7 @@ public class PostController {
         Set<Image> imageSet = new HashSet<>();
         List<MultipartFile> multipartFiles = postForm.getImages();
         List<String> listFileName = new ArrayList<>();
-        for (MultipartFile multipartfiles : multipartFiles
-        ) {
+        for (MultipartFile multipartfiles: multipartFiles) {
             listFileName.add(multipartfiles.getOriginalFilename());
         }
         try {
@@ -61,13 +61,13 @@ public class PostController {
             image.setImage_link(listFileName.get(i));
             imageSet.add(image);
         }
-        for (Image image : imageSet
-        ) {
+        for (Image image: imageSet
+             ) {
             iImageService.save(image);
         }
 
 
-        Post post = new Post(postForm.getTitle(), postForm.getContent(), time, user, imageSet, likes, postForm.getStatus());
+        Post post = new Post(postForm.getTitle(),postForm.getContent(),time,user,imageSet, likes,postForm.getStatus());
         postService.save(post);
 
         return new ModelAndView("redirect:/home");
@@ -136,7 +136,6 @@ public class PostController {
         modelAndView.addObject("requestFriendList", requestFriendListRelationship);
 
         modelAndView.addObject("optionalPost", editPost);
-
         modelAndView.addObject("message", "Post updated successfully");
         return modelAndView;
     }
@@ -147,7 +146,5 @@ public class PostController {
         postService.remove(id);
         return "redirect:/timeline";
     }
-
-
 
 }

@@ -79,7 +79,7 @@
                                                 </div>
                                                 <ins><a href="time-line.html" title=""
                                                         th:text="${p.getUser().getUsername()}">Jack Carter</a></ins>
-                                                <span ><i th:text="${p.getCreatedAt()}" class="fa fa-globe"></i> Published: </span>
+                                                <span >Published: <i th:text="${p.getSimpleDate()}" class=""></i></span>
                                             </div>
                                             <div class="post-meta">
                                                 <p th:text="${p.getContent()}">

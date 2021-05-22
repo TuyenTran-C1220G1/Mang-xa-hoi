@@ -1,6 +1,8 @@
 package com.company.service.impl;
 
+import com.company.model.Image;
 import com.company.model.Post;
+import com.company.model.User;
 import com.company.repository.IPostRepository;
 import com.company.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Set;
+
 @Service
 public class PostService implements IPostService {
     @Autowired
@@ -27,14 +31,26 @@ public class PostService implements IPostService {
     }
 
     @Override
+    public Page<Post> findAllByStatusOrderByCreatedAtDesc(Pageable pageable, int status) {
+        return postRepository.findAllByStatusOrderByCreatedAtDesc(pageable,status);
+    }
+
+    @Override
+    public Page<Post> findAllByUserIdOrderByCreatedAtDesc(Pageable pageable, Long id) {
+        return postRepository.findAllByUserIdOrderByCreatedAtDesc(pageable,id);
+    }
+
+
+    @Override
     public void save(Post post) {
         postRepository.save(post);
     }
 
     @Override
     public void remove(Long id) {
-postRepository.deleteById(id);
+        postRepository.deleteById(id);
     }
+
 
 
     @Override

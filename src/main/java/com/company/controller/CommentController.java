@@ -37,10 +37,9 @@ public class CommentController {
        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/listcoment")
-    public ResponseEntity<Iterable<Comment>> getListComment(@RequestBody Long id) {
+    @GetMapping("/listcomment/{id}")
+    public ResponseEntity<Iterable<Comment>> getListComment(@PathVariable Long id) {
         Iterable<Comment> comments = commentService.findAllByPostId(id);
         return new ResponseEntity<>(comments,HttpStatus.OK);
     }
-
 }
