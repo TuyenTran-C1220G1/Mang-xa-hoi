@@ -44,4 +44,24 @@ public class RelationshipController {
         relationshipServiceImpl.save(editRelationship.get());
         return new ModelAndView("redirect:/home");
     }
+
+    @GetMapping("/block-friend/{id}")
+    public ModelAndView BlockFriend(@PathVariable Long id, Principal principal) {
+        User user = userServiceImpl.findByUsername(principal.getName());
+        Optional<Relationship> editRelationship = relationshipServiceImpl.findById(id);
+        long millis = System.currentTimeMillis();
+        Date createAt = new Date(millis);
+        editRelationship.get().setCreatedAt(createAt);
+        editRelationship.get().setStatus(3);
+        relationshipServiceImpl.save(editRelationship.get());
+        return new ModelAndView("redirect:/home");
+    }
+
+    @GetMapping("/unFriend/{id}")
+    public ModelAndView unFriend(@PathVariable Long id, Principal principal) {
+        User user = userServiceImpl.findByUsername(principal.getName());
+        Optional<Relationship> deleteRelationship = relationshipServiceImpl.findById(id);
+        relationshipServiceImpl.deleteById(id);
+        return new ModelAndView("redirect:/timeline-friends2");
+    }
 }

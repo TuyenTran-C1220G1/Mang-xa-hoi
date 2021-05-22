@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -15,4 +16,5 @@ public interface IPostRepository extends PagingAndSortingRepository<Post,Long> {
     Page<Post> findAllByUserIdOrderByCreatedAtDesc(Pageable pageable,Long id);
     Optional<Post> findById(Long id);
     Page<Post> findAllByStatusOrderByCreatedAtDesc(Pageable pageable,int status);
+    List<Post> findAllByStatus(int status);
 }

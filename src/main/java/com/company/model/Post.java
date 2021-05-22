@@ -14,7 +14,7 @@ import java.util.Set;
 
 
 @Entity
-public class Post {
+public class Post implements Comparable<Post> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -59,7 +59,8 @@ public class Post {
         this.status = status;
     }
 
-    public Post(String tittle, String content, LocalDateTime createdAt, User user, Set<Image> images, int status) {
+    public Post(Long id,String tittle, String content, LocalDateTime createdAt, User user, Set<Image> images, int status) {
+        this.id=id;
         this.tittle = tittle;
         this.content = content;
         this.createdAt = createdAt;
@@ -140,5 +141,10 @@ public class Post {
         }catch (Exception e){
             return null;
         }
+    }
+
+    @Override
+    public int compareTo(Post o) {
+        return o.createdAt.compareTo(this.createdAt);
     }
 }

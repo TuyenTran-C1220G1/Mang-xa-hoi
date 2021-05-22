@@ -104,8 +104,7 @@ public class PostController {
         List<String> listFileName = new ArrayList<>();
         Set<Image> imageSet = new HashSet<>();
         List<MultipartFile> multipartFiles = postForm.getImages();
-        if (!multipartFiles.isEmpty()) {
-
+        if (multipartFiles.get(0).getSize()!=0) {
             for (MultipartFile multipartfiles : multipartFiles) {
                 listFileName.add(multipartfiles.getOriginalFilename());
             }
@@ -128,7 +127,7 @@ public class PostController {
             imageSet = optionalPost.get().getImages();
         }
 
-        Post editPost = new Post(postForm.getTitle(), postForm.getContent(), time, user, imageSet, postForm.getStatus());
+        Post editPost = new Post(postForm.getId(),postForm.getTitle(), postForm.getContent(), time, user, imageSet, postForm.getStatus());
         postService.save(editPost);
         ModelAndView modelAndView = new ModelAndView("timeline-edit-post");
         modelAndView.addObject("user", user);

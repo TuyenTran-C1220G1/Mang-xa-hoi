@@ -13,4 +13,5 @@ public interface IRelationshipService {
     List<Relationship> findAllByUserFriend(User userFriend);
     Relationship save(Relationship relationship);
     Optional<Relationship> findById(Long id);
+    void deleteById(Long id);
 }

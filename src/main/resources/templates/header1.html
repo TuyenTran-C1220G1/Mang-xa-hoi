@@ -49,7 +49,7 @@
 									</figure>
 									<div class="mesg-meta">
 										<h6><a href="#" title="" th:text="${re.getUser().getUsername}">Loren</a></h6>
-										<span><b>Amy</b> Sent request</span>
+										<span><b th:text="${re.getUser().getUsername}">Amy</b> Sent request</span>
 										<i>Confirm</i>
 									</div>
 									<div class="add-del-friends">
@@ -232,12 +232,12 @@
 				<img th:src="@{${'/imageP/'+user.getAvatar()}}" alt="" width="50px">
 				<span class="status f-online"></span>
 				<div class="user-setting">
-					<span class="seting-title">Chat setting <a href="#" title="">see all</a></span>
-					<ul class="chat-setting">
-						<li><a href="#" title=""><span class="status f-online"></span>online</a></li>
-						<li><a href="#" title=""><span class="status f-away"></span>away</a></li>
-						<li><a href="#" title=""><span class="status f-off"></span>offline</a></li>
-					</ul>
+<!--					<span class="seting-title">Chat setting <a href="#" title="">see all</a></span>-->
+<!--					<ul class="chat-setting">-->
+<!--						<li><a href="#" title=""><span class="status f-online"></span>online</a></li>-->
+<!--						<li><a href="#" title=""><span class="status f-away"></span>away</a></li>-->
+<!--						<li><a href="#" title=""><span class="status f-off"></span>offline</a></li>-->
+<!--					</ul>-->
 					<span class="seting-title">User setting <a href="#" title="">see all</a></span>
 					<ul class="log-out">
 						<li><a href="/about" title=""><i class="ti-user"></i> view profile</a></li>
