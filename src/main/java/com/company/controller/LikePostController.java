@@ -42,7 +42,9 @@ public class LikePostController {
             } else {
                 likePost.get().setIsLike(0);
                 int likeChange = post.get().getLikes();
-                likeChange--;
+                if(likeChange>0){
+                    likeChange--;
+                }
                 post.get().setLikes(likeChange);
                 iPostService.save(post.get());
             }
