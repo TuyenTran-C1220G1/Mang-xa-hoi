@@ -202,34 +202,46 @@
 													<div class="we-video-info">
 														<ul>
 															<li>
-																<div class="likes heart" title="Like/Dislike">❤ <span>2K</span></div>
-															</li>
-														</ul>
-													</div>
-												</div>
-												<div class="coment-area" style="display: block;">
-													<ul class="we-comet" th:id="${post.getId()}+'formListComment'">
-														<button th:onclick="|getListComment('${post.getId()}')|">List Comment</button>
+																<span class="views" title="views">
+																	<i class="fa fa-eye"></i>
+																	<ins>1.2k</ins>
+																</span>
+															</li><li>
+															<div th:id="${post.getId()}+'formLike'">
 
-													</ul>
-													<ul class="post-comment" th:id="${post.getId()}+'formComment'">
-														<button th:onclick="|addFormComment('${post.getId()}')|">Add Comment</button>
-													</ul>
-<!--													<ul class="we-comet">-->
-														<li>
-															<div class="comet-avatar">
-																<img src="/images/resources/nearly3.jpg" alt="">
-															</div>
-															<div class="we-comment">
-																<h5><a href="time-line.html" title="">Jason borne</a></h5>
-																<p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
-																<div class="inline-itms">
-																	<span>1 year ago</span>
-																	<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-																	<a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
-																</div>
+																<div class="likes heart" title="Like/Dislike" th:onclick="|checkLike('${post.getId()}')|">❤ <span id="${post.getId()}+'totalLike'" th:value="${post.getLikes()}" th:text="${post.getLikes()}"></span></div>
 															</div>
 														</li>
+															<li>
+																<span class="comment" title="Comments">
+																	<i class="fa fa-commenting" th:onclick="|getListComment('${post.getId()}')|"></i>
+																	<ins>52</ins>
+																</span>
+															</li>
+
+															<li>
+																<span>
+																	<a class="share-pst" href="#" title="Share">
+																		<i class="fa fa-share-alt" ></i>
+																	</a>
+																	<ins>20</ins>
+																</span>
+															</li>
+														</ul>
+
+													</div>
+												</div>
+												<div class="coment-area" style="display: none;">
+
+													<ul class="we-comet" th:id="${post.getId()}+'formListComment'">
+
+
+													</ul>
+
+													<ul class="post-comment" th:id="${post.getId()}+'formComment'">
+
+
+													</ul>
 
 												</div>
 											</div>
@@ -546,21 +558,25 @@
 			content : content
 		};
 		$.ajax({
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			type: "POST",
-			data: JSON.stringify(newComment),
-			//tên API
-			url: `http://localhost:8080/comment/create/${id}`,
-			//xử lý khi thành công
-			success: getListComment(id),
-			error: function () { // error callback
-				alert("lỗi")
-			}
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					},
+					type: "POST",
+					data: JSON.stringify(newComment),
+					//tên API
+					url: `http://localhost:8080/comment/create/${id}`,
+					//xử lý khi thành công
 
-		});
+
+
+					error: function () { // error callback
+						alert("lỗi")
+					}
+
+				}
+		).done(getListComment(id))
+				.always(getListComment(id))
 		//chặn sự kiện mặc định của thẻ
 		event.preventDefault();
 	}
@@ -572,10 +588,9 @@
                     <textarea id="p${a}" placeholder="Post your comment"></textarea>
                 </form>
 
-                    <button onclick="addNewComment(${a})">Send</button>
+                    <button class="btn btn-success" onclick="addNewComment(${a})">Send</button>
 
             </div>`
-		// <button th:onclick="|addNewComment('${a}')|">Send</button>
 		let divID = a+"formComment";
 		document.getElementById(divID).innerHTML = content;
 	}
@@ -588,25 +603,28 @@
 					//xử lý khi thành công
 					success: function (data) {
 						// hien thi danh sach o day
-						var content;
+						var content ="";
 						for (let i = 0; i < data.length; i++) {
 							content += getComment(data[i]);
 						}
 						document.getElementById(divId).innerHTML = content;
 					},
+					succes: addFormComment(a),
 					error: function () { // error callback
 						alert("lỗi")
 					}
 				}
 		)
+		event.preventDefault();
 	}
 	function getComment(comment){
 		let image = comment.user.avatar
 		return `<li>
-            <div class="comet-avatar">
-                <img src="${image}" alt="">
-            </div>
+			<div class="comet-avatar" ><figure>
+<img src="${'/imageP/' +image}" alt="" height="30px" width="30px">
+</figure></div>
             <div class="we-comment">
+
                 <h5><a href="time-line.html" title="">${comment.user.name}</a></h5>
                 <p>${comment.content}</p>
 
@@ -614,12 +632,48 @@
 
         </li>`
 	}
-	function testalert(a){
-		alert(a)
+	function testAlert(){
+		var test = document.getElementById("test123").value;
+		console.log(test)
+	}
+	function checkLike(postId){
+		$.ajax({
+			type:"POST",
+			url:`http://localhost:8080/like/${postId}`,
+			success: getLike(postId),
+			error: function (){
+				alert("loi")
+			}
+		})
+		event.preventDefault();
+	}
+	function getLike(postId){
+		let div = postId + 'formLike'
+		$.ajax({
+			type:"GET",
+			url:`http://localhost:8080/like/quantity/${postId}`,
+
+			success: function(data){
+				let content = ""
+				content += getLikesForm(data)
+				document.getElementById(div).innerHTML = content
+
+			},
+			error: function (){
+				alert("loi")
+			}
+
+		})
+	}
+	function getLikesForm(like){
+
+		return `<div class="likes heart" title="Like/Dislike" onclick="checkLike(${like.id})">❤
+<span id="${like.id}+'totalLike'"  >${like.likes}</span>
+</div>`
 	}
 
-</script>
 
+</script>
 </body>
 
 </html>
