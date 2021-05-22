@@ -54,72 +54,7 @@
 			</form>
 		</div>
 
-<!--		<nav id="shoppingbag">-->
-<!--			<div>-->
-<!--				<div class="">-->
-<!--					<form method="post">-->
-<!--						<div class="setting-row">-->
-<!--							<span>use night mode</span>-->
-<!--							<input type="checkbox" id="nightmode"/> -->
-<!--							<label for="nightmode" data-on-label="ON" data-off-label="OFF"></label>-->
-<!--						</div>-->
-<!--						<div class="setting-row">-->
-<!--							<span>Notifications</span>-->
-<!--							<input type="checkbox" id="switch2"/> -->
-<!--							<label for="switch2" data-on-label="ON" data-off-label="OFF"></label>-->
-<!--						</div>-->
-<!--						<div class="setting-row">-->
-<!--							<span>Notification sound</span>-->
-<!--							<input type="checkbox" id="switch3"/> -->
-<!--							<label for="switch3" data-on-label="ON" data-off-label="OFF"></label>-->
-<!--						</div>-->
-<!--						<div class="setting-row">-->
-<!--							<span>My profile</span>-->
-<!--							<input type="checkbox" id="switch4"/> -->
-<!--							<label for="switch4" data-on-label="ON" data-off-label="OFF"></label>-->
-<!--						</div>-->
-<!--						<div class="setting-row">-->
-<!--							<span>Show profile</span>-->
-<!--							<input type="checkbox" id="switch5"/> -->
-<!--							<label for="switch5" data-on-label="ON" data-off-label="OFF"></label>-->
-<!--						</div>-->
-<!--					</form>-->
-<!--					<h4 class="panel-title">Account Setting</h4>-->
-<!--					<form method="post">-->
-<!--						<div class="setting-row">-->
-<!--							<span>Sub users</span>-->
-<!--							<input type="checkbox" id="switch6" /> -->
-<!--							<label for="switch6" data-on-label="ON" data-off-label="OFF"></label>-->
-<!--						</div>-->
-<!--						<div class="setting-row">-->
-<!--							<span>personal account</span>-->
-<!--							<input type="checkbox" id="switch7" /> -->
-<!--							<label for="switch7" data-on-label="ON" data-off-label="OFF"></label>-->
-<!--						</div>-->
-<!--						<div class="setting-row">-->
-<!--							<span>Business account</span>-->
-<!--							<input type="checkbox" id="switch8" /> -->
-<!--							<label for="switch8" data-on-label="ON" data-off-label="OFF"></label>-->
-<!--						</div>-->
-<!--						<div class="setting-row">-->
-<!--							<span>Show me online</span>-->
-<!--							<input type="checkbox" id="switch9" /> -->
-<!--							<label for="switch9" data-on-label="ON" data-off-label="OFF"></label>-->
-<!--						</div>-->
-<!--						<div class="setting-row">-->
-<!--							<span>Delete history</span>-->
-<!--							<input type="checkbox" id="switch10" /> -->
-<!--							<label for="switch10" data-on-label="ON" data-off-label="OFF"></label>-->
-<!--						</div>-->
-<!--						<div class="setting-row">-->
-<!--							<span>Expose author name</span>-->
-<!--							<input type="checkbox" id="switch11" /> -->
-<!--							<label for="switch11" data-on-label="ON" data-off-label="OFF"></label>-->
-<!--						</div>-->
-<!--					</form>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--		</nav>-->
+
 	</div><!-- responsive header -->
 
 	<div class="topbar stick" th:replace="/header1::header1">
@@ -197,64 +132,33 @@
                                                 <ins><a href="time-line.html" title=""
                                                         th:text="${user.username}">Jack Carter</a>
                                                 </ins>
-                                                <select class="btn-group btn-group-sm" th:field="*{status}">
-                                                    <option th:value="0" class="btn btn-info btn-xs" href="#"><i
-                                                            class="fa fa-globe fa-fw"></i>
-                                                        Public</option>
-                                                    <option th:value="1" > <i class="fa fa-lock fa-fw"></i> Only me
-                                                    </option>
-                                                    <option th:value="2" > <i class="fa fa-users fa-fw"></i> Friends
-                                                    </option>
-
+                                                <select class="form-select form-select-sm" th:field="*{status}" >
+                                                    <option th:value="0"><i class="fa fa-globe fa-fw"></i>Only me</option>
+                                                    <option th:value="1" > <i class="fa fa-lock fa-fw"></i> Public</option>
+                                                    <option th:value="2" > <i class="fa fa-users fa-fw"></i> Friends</option>
                                                 </select>
-                                            </div>
+												<div class="newpst-input">
+                                                <textarea th:field="*{content}"
+														  placeholder="Share some what you are thinking?"></textarea>
+												</div>
+												<div class="attachments">
+													<div class="c-form">
+														<div class="edit-img">
+															<label class="fileContainer">
+																<input type="file" th:field="*{images}" multiple>
 
-                                            <div class="newpst-input">
-                                                <textarea th:field="*{content}" rows="2"
-                                                          placeholder="Share some what you are thinking?"></textarea>
-                                            </div>
-                                            <div class="attachments">
+																<i class="fa fa-camera-retro"></i>
+																Add photos to your post
+															</label>
+														</div>
+													</div>
+												</div>
 
-                                                <ul>
-                                                    <li>
-                                                        <i class="fa fa-image"></i>
-                                                        <label class="fileContainer">
-                                                            <input type="file" th:field="*{images}" multiple>
-                                                        </label>
-                                                    </li>
-
-                                                </ul>
-                                                <button class="post-btn" type="submit" data-ripple="">Post</button>
+												<button class="post-btn" type="submit" data-ripple="">Post</button>
                                             </div>
                                         </div>
                                     </form>
-<!--									<div class="new-postbox">-->
-<!--										<figure>-->
-<!--											<img th:src="@{${'/imageP/'+user.getAvatar()}}" alt="" height="30px" width="30px">-->
-<!--										</figure>-->
-<!--										<form th:object="${postForm}" action="/createpost" method="post" enctype="multipart/form-data">-->
-<!--										<div class="newpst-input">-->
-<!--												<textarea th:field="*{content}" rows="2" placeholder="Share some what you are thinking?"></textarea>-->
-<!--										</div>-->
-<!--										<div class="attachments">-->
-<!--											<ul>-->
-<!--												<select th:field="*{status}">-->
-<!--													<option th:value="1">Public</option>-->
-<!--													<option th:value="0">Private</option>-->
-<!--												</select>-->
 
-<!--												<li>-->
-<!--													<i class="fa fa-image"></i>-->
-<!--													<label class="fileContainer">-->
-<!--														<input type="file" th:field="*{images}" multiple>-->
-<!--													</label>-->
-<!--												</li>-->
-
-<!--											</ul>-->
-<!--											<button class="post-btn" type="submit" data-ripple="">Post</button>-->
-<!--										</div>-->
-<!--										</form>-->
-<!--									</div>	-->
 								</div><!-- add post new box -->
 
 								<div class="" th:each="post: ${listPost}">
@@ -270,7 +174,6 @@
 															<ul>
 																<li><i class="fa fa-pencil-square-o"></i>Edit Post</li>
 																<li><i class="fa fa-trash-o"></i>Delete Post</li>
-<!--																-->
 															</ul>
 														</div>
 													</div>
@@ -291,42 +194,17 @@
 																		<img th:src="@{${'/imageP/'+image.image_link}}" alt="">
 																		</a>
 																	</figure>
-<!--																	-->
 																</div>
 															</div>
 														</div>
-														<ul class="like-dislike">
-															<li><a class="bg-purple" href="#" title="Save to Pin Post"><i class="fa fa-thumb-tack"></i></a></li>
-															<li><a class="bg-blue" href="#" title="Like Post"><i class="ti-thumb-up"></i></a></li>
-															<li><a class="bg-red" href="#" title="dislike Post"><i class="ti-thumb-down"></i></a></li>
-														</ul>
+
 													</figure>
 													<div class="we-video-info">
 														<ul>
-<!--															-->
 															<li>
 																<div class="likes heart" title="Like/Dislike">❤ <span>2K</span></div>
 															</li>
-<!--															-->
 														</ul>
-														<div class="users-thumb-list">
-															<a data-toggle="tooltip" title="Anderw" href="#">
-																<img alt="" src="/images/resources/userlist-1.jpg">
-															</a>
-															<a data-toggle="tooltip" title="frank" href="#">
-																<img alt="" src="/images/resources/userlist-2.jpg">
-															</a>
-															<a data-toggle="tooltip" title="Sara" href="#">
-																<img alt="" src="/images/resources/userlist-3.jpg">
-															</a>
-															<a data-toggle="tooltip" title="Amy" href="#">
-																<img alt="" src="/images/resources/userlist-4.jpg">
-															</a>
-															<a data-toggle="tooltip" title="Ema" href="#">
-																<img alt="" src="/images/resources/userlist-5.jpg">
-															</a>
-															<span><strong>You</strong>, <b>Sarah</b> and <a href="#" title="">24+ more</a> liked</span>
-														</div>
 													</div>
 												</div>
 												<div class="coment-area" style="display: block;">
@@ -352,61 +230,7 @@
 																</div>
 															</div>
 														</li>
-<!--														<li>-->
-<!--															<div class="comet-avatar">-->
-<!--																<img src="images/resources/comet-4.jpg" alt="">-->
-<!--															</div>-->
-<!--															<div class="we-comment">-->
-<!--																<h5><a href="time-line.html" title="">Sophia</a></h5>-->
-<!--																<p>we are working for the dance and sing songs. this video is very awesome for the youngster.-->
-<!--																	<i class="em em-smiley"></i>-->
-<!--																</p>-->
-<!--																<div class="inline-itms">-->
-<!--																	<span>1 year ago</span>-->
-<!--																	<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>-->
-<!--																	<a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>-->
-<!--																</div>-->
-<!--															</div>-->
-<!--														</li>-->
-<!--														<li>-->
-<!--															<a href="#" title="" class="showmore underline">more comments+</a>-->
-<!--														</li>-->
-<!--														<li class="post-comment">-->
-<!--															<div class="comet-avatar">-->
-<!--																<img src="images/resources/nearly1.jpg" alt="">-->
-<!--															</div>-->
-<!--															<div class="post-comt-box">-->
-<!--																<form method="post">-->
-<!--																	<textarea placeholder="Post your comment"></textarea>-->
-<!--																	<div class="add-smiles">-->
-<!--																		<div class="uploadimage">-->
-<!--																			<i class="fa fa-image"></i>-->
-<!--																			<label class="fileContainer">-->
-<!--																				<input type="file">-->
-<!--																			</label>-->
-<!--																		</div>-->
-<!--																		<span class="em em-expressionless" title="add icon"></span>-->
-<!--																		<div class="smiles-bunch">-->
-<!--																			<i class="em em-&#45;&#45;1"></i>-->
-<!--																			<i class="em em-smiley"></i>-->
-<!--																			<i class="em em-anguished"></i>-->
-<!--																			<i class="em em-laughing"></i>-->
-<!--																			<i class="em em-angry"></i>-->
-<!--																			<i class="em em-astonished"></i>-->
-<!--																			<i class="em em-blush"></i>-->
-<!--																			<i class="em em-disappointed"></i>-->
-<!--																			<i class="em em-worried"></i>-->
-<!--																			<i class="em em-kissing_heart"></i>-->
-<!--																			<i class="em em-rage"></i>-->
-<!--																			<i class="em em-stuck_out_tongue"></i>-->
-<!--																		</div>-->
-<!--																	</div>-->
 
-<!--																	<button type="submit"></button>-->
-<!--																</form>	-->
-<!--															</div>-->
-<!--														</li>-->
-<!--													</ul>-->
 												</div>
 											</div>
 
@@ -797,6 +621,5 @@
 </script>
 
 </body>
-
 
 </html>

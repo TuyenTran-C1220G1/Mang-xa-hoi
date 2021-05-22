@@ -16,15 +16,16 @@ public class LikePost {
     private User user;
     private int isLike;
 
-    public LikePost() {
-    }
-
-    public LikePost(Long id, Post post, User user, int isLike) {
-        this.id = id;
+    public LikePost(Post post, User user, int isLike) {
         this.post = post;
         this.user = user;
         this.isLike = isLike;
     }
+
+    public LikePost() {
+    }
+
+
 
     public Long getId() {
         return id;
