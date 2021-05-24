@@ -72,11 +72,11 @@ public class HomeController {
 
         modelAndView.addObject("postForm", new PostForm());
 
-        // lay tat ca post o che do publish
+        // lay tat ca post o che do publish status=1
         List<Post> listPostPublic = postService.findAllByStatus(1);
 //        modelAndView.addObject("listPost", listPostPublic);
 
-        // lay tat ca post o che do friend
+        // lay tat ca post o che do friend status=2
         List<Post> listPostAllFriend = postService.findAllByStatus(2);
 
 
@@ -182,6 +182,7 @@ public class HomeController {
         userServiceImpl.save(user);
         ModelAndView modelAndView = new ModelAndView("/login");
         modelAndView.addObject("user", user);
+        modelAndView.addObject("message", "Registered successfully! Please sign in...");
         return modelAndView;
     }
 

@@ -32,7 +32,7 @@ public class Post implements Comparable<Post> {
     private Set<Image> images = new HashSet<>();
     private int likes;
     @Min(0)
-    @Max(1)
+    @Max(2)
     private int status;
 
     public Post() {

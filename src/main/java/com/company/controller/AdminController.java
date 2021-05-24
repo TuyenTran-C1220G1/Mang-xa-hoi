@@ -70,24 +70,24 @@ public class AdminController {
         return modelAndView;
     }
 
+//    @GetMapping("/delete-user/{id}")
+//    public ModelAndView showDeleteForm(@PathVariable Long id) {
+//        Optional<User> userOptional = adminService.findById(id);
+//        if (userOptional.isPresent()) {
+//            ModelAndView modelAndView = new ModelAndView("admin");
+//            modelAndView.addObject("userOptional", userOptional.get());
+//            return modelAndView;
+//
+//        } else {
+//            ModelAndView modelAndView = new ModelAndView("/404-error");
+//            return modelAndView;
+//        }
+//    }
+
     @GetMapping("/delete-user/{id}")
-    public ModelAndView showDeleteForm(@PathVariable Long id) {
-        Optional<User> userOptional = adminService.findById(id);
-        if (userOptional.isPresent()) {
-            ModelAndView modelAndView = new ModelAndView("admin");
-            modelAndView.addObject("userOptional", userOptional.get());
-            return modelAndView;
-
-        } else {
-            ModelAndView modelAndView = new ModelAndView("/404-error");
-            return modelAndView;
-        }
-    }
-
-    @PostMapping("/delete-user")
-    public String deleteCustomer(@ModelAttribute("userOptional") User user) {
-        adminService.remove(user.getId());
-        return "redirect:manage";
+    public String deleteCustomer(@PathVariable Long id) {
+        adminService.remove(id);
+        return "redirect:/admin";
     }
 
 
