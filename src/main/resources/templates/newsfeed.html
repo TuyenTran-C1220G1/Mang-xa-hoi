@@ -8,7 +8,7 @@
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
     <title>Pitnik Social Network Toolkit</title>
-    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/img/images/fav.png" type="image/png" sizes="16x16">
 
     <link rel="stylesheet" href="/css/main.min.css">
     <link rel="stylesheet" href="/css/weather-icons.min.css">
@@ -41,10 +41,10 @@
 				<a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
 			</span>
             <span class="mh-text">
-				<a href="newsfeed.html" title=""><img src="/images/logo2.png" alt=""></a>
+				<a href="" title=""><img src="/img/images/logo2.png" alt=""></a>
 			</span>
             <span class="mh-btns-right">
-				<a class="fa fa-sliders" href="#shoppingbag"></a>
+				<a class="fa fa-sliders" href=""></a>
 			</span>
         </div>
         <div class="mh-head second">
@@ -184,7 +184,7 @@
 <!--                                                            </ul>-->
 <!--                                                        </div>-->
 <!--                                                    </div>-->
-                                                    <ins><a href="time-line.html" title=""
+                                                    <ins><a href="/timeline" title=""
                                                             th:text="${post.getUser().getUsername()}">Jack Carter</a>
                                                     </ins>
                                                     <span> Published: <i class="" th:text="${post.getSimpleDate()}"></i></span>
@@ -201,10 +201,10 @@
                                                                 <div class="col-lg-6 col-md-6 col-sm-6"
                                                                      th:each="image:${post.getImages()}">
                                                                     <figure>
-                                                                        <a class="strip"
-                                                                           href="images/resources/album6.jpg" title=""
-                                                                           data-strip-group="mygroup"
-                                                                           data-strip-group-options="loop: false">
+<!--                                                                        <a class="strip"-->
+<!--                                                                           href="/img/images/resources/album6.jpg" title=""-->
+<!--                                                                           data-strip-group="mygroup"-->
+<!--                                                                           data-strip-group-options="loop: false">-->
                                                                             <img th:src="@{${'/imageP/'+image.image_link}}"
                                                                                  alt="">
                                                                         </a>
@@ -350,7 +350,7 @@
         </div>
     </section>
 
-    <a title="Your Cart Items" href="shop-cart.html" class="shopping-cart" data-toggle="tooltip">Cart <i
+    <a title="Your Cart Items" href="" class="shopping-cart" data-toggle="tooltip">Cart <i
             class="fa fa-shopping-bag"></i><span>02</span></a>
 
     <div class="bottombar">
@@ -358,7 +358,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <span class="copyright">© Pitnik 2020. All rights reserved.</span>
-                    <i><img src="images/credit-cards.png" alt=""></i>
+                    <i><img src="/img/images/credit-cards.png" alt=""></i>
                 </div>
             </div>
         </div>
@@ -412,13 +412,13 @@
                         <button type="submit"></button>
                     </form>
                 </div>
-                <figure><img src="images/resources/share-post.jpg" alt=""></figure>
+                <figure><img src="/img/images/resources/share-post.jpg" alt=""></figure>
                 <div class="friend-info">
                     <figure>
-                        <img alt="" src="images/resources/admin.jpg">
+                        <img alt="" src="/img/images/resources/admin.jpg">
                     </figure>
                     <div class="friend-name">
-                        <ins><a title="" href="time-line.html">Jack Carter</a> share <a title="" href="#">link</a></ins>
+                        <ins><a title="" href="">Jack Carter</a> share <a title="" href="#">link</a></ins>
                         <span>Yesterday with @Jack Piller and @Emily Stone at the concert of # Rock'n'Rolla in Ontario.</span>
                     </div>
                 </div>

@@ -15,6 +15,5 @@ public interface IPostService extends IGeneralService<Post>{
     Page<Post> findAllByStatusOrderByCreatedAtDesc(Pageable pageable,int status);
     Page<Post> findAllByUserIdOrderByCreatedAtDesc(Pageable pageable,Long id);
     void remove(Long id);
-
     List<Post> findAllByStatus(int status);
 }

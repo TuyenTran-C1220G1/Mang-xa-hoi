@@ -7,7 +7,7 @@
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
     <title>Pitnik Social Network Toolkit</title>
-    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/img/images/fav.png" type="image/png" sizes="16x16">
 
     <link rel="stylesheet" href="/css/main.min.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -56,18 +56,23 @@
 
                         <div class="col-lg-6">
 <!--                            <div class="central-meta postbox"></div>-->
-                            <span th:if="${message}"><p th:text="${message}"></p></span>
+
                             <form th:action="@{/edit-post}" method="post" th:object="${optionalPost}" enctype="multipart/form-data">
                                 <div class="">
                                     <div class="central-meta item">
+                                        <span th:if="${message}"><p style="color: red" th:text="${message}"></p></span>
+                                        <div>
+                                            <h5>Edit Post </h5>
+                                        </div>
 <!--                                        <div class="user-post">-->
 <!--                                            <div class="friend-info">-->
-                                                <div class="friend-name">
-                                                    <ins><a href="time-line.html" title=""></a></ins>
+<!--                                                <div class="friend-name">-->
+<!--                                                    <ins><a href="" title=""></a></ins>-->
 
-                                                    <input th:field="*{id}" hidden>
-                                                </div>
+
+<!--                                                </div>-->
                                                 <div class="post-meta">
+                                                    <input th:field="*{id}" hidden>
                                                     <div>
                                                         <label>Content: </label>
                                                         <textarea type="text" th:field="*{content}"></textarea>
@@ -167,7 +172,7 @@
         <div class="row">
             <div class="col-md-12">
                 <span class="copyright">© Pitnik 2020. All rights reserved.</span>
-                <i><img src="images/credit-cards.png" alt=""></i>
+                <i><img src="/img/images/credit-cards.png" alt=""></i>
             </div>
         </div>
     </div>

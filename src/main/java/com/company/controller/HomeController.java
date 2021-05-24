@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Controller
 public class HomeController {
@@ -182,7 +183,7 @@ public class HomeController {
         userServiceImpl.save(user);
         ModelAndView modelAndView = new ModelAndView("/login");
         modelAndView.addObject("user", user);
-        modelAndView.addObject("message", "Registered successfully! Please sign in...");
+        modelAndView.addObject("message", "Registered successfully!!! Please sign in...");
         return modelAndView;
     }
 
@@ -260,8 +261,11 @@ public class HomeController {
 
         principal.getName();
         User user = userServiceImpl.findByUsername(principal.getName());
+        final String PHONE_NUMBER_REGEX = "(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}";
+
         MultipartFile avatar = userForm.getAvatar();
         MultipartFile backGround = userForm.getBackground();
+
         String fileNameAvatar = "";
         if (avatar.getSize() != 0) {
             fileNameAvatar = avatar.getOriginalFilename();
@@ -284,6 +288,20 @@ public class HomeController {
             }
         } else {
             fileNameBackGround = user.getBackground();
+        }
+
+//        nếu không đúng định dạng thì hiện ra thông báo
+        if (!Pattern.matches(PHONE_NUMBER_REGEX, userForm.getPhone())) {
+            ModelAndView modelAndView = new ModelAndView("setting");
+            modelAndView.addObject("user", user);
+            user.setAvatar(fileNameAvatar);
+            user.setBackground(fileNameBackGround);
+            modelAndView.addObject("message_phone", "Phone is not valid!");
+            // lay ra list loi moi ket ban
+            List<Relationship> requestFriendListRelationship = relationshipServiceImpl.findAllByUserFriendAndStatus(user, 1);
+            modelAndView.addObject("requestFriendList", requestFriendListRelationship);
+
+            return modelAndView;
         }
 
         User editUser = new User(user.getId(), userForm.getName(), user.getUsername(),

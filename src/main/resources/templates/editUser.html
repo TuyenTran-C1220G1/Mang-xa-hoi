@@ -7,7 +7,7 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<title>Pitnik Social Network Toolkit</title>
-	<link rel="icon" href="/images/fav.png" type="image/png" sizes="16x16">
+	<link rel="icon" href="/img/images/fav.png" type="image/png" sizes="16x16">
 
 	<link rel="stylesheet" href="/css/main.min.css">
 	<link rel="stylesheet" href="/css/style.css">
@@ -37,7 +37,7 @@
 				<a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
 			</span>
 			<span class="mh-text">
-				<a href="newsfeed.html" title=""><img src="/images/logo2.png" alt=""></a>
+				<a href="newsfeed.html" title=""><img src="/img/images/logo2.png" alt=""></a>
 			</span>
 			<span class="mh-btns-right">
 				<a class="fa fa-sliders" href="#shoppingbag"></a>
@@ -90,7 +90,7 @@
 
 													</div>
 													<form method="post" th:action="@{/update/{id}(id=${editUser.getId()})}" th:object="${editUser}" novalidate="novalidate" enctype="multipart/form-data">
-														<span th:if="${message}"><p th:text="${message}"></p></span>
+														<span th:if="${message}"><p style="color: red" th:text="${message}"></p></span>
 
 														<div class="setting-meta">
 														<div class="change-photo">
@@ -126,23 +126,27 @@
 
 															<div>
 																<label>About me</label>
-																<input type="text" th:field="*{description}">
+																<textarea type="text" th:field="*{description}"></textarea>
 															</div>
 															<div>
 																<label>Birthday</label>
-																<input type="date" th:field="*{dob}">
+																<input type="date" th:field="*{dob}" required>
 															</div>
-															<div>
-																<label>Phone number</label>
-																<input type="text" th:field="*{phone}">
-															</div>
+<!--															<div>-->
+<!--																<label>Phone number</label>-->
+<!--&lt;!&ndash;																<span style="color: red" th:if="${message_phone}" th:text="${message_phone}">Phone Error</span>&ndash;&gt;-->
+<!--																<input type="text" th:field="*{phone}">-->
+<!--															</div>-->
 															<div>
 																<label>Country</label>
 																<input type="text" th:field="*{country}">
 															</div>
 															<div>
 																<label>Gender</label>
-																<input type="text" th:field="*{gender}">
+																<select class="form-select form-select-sm" th:field="*{gender}">
+																	<option th:value="Male"><i class="fa fa-globe fa-fw"></i>Male</option>
+																	<option th:value="Female" ><i class="fa fa-lock fa-fw"></i>Female</option>
+																</select>
 															</div>
 															<div>
 																<button type="button"  data-ripple="">Cancel</button>
